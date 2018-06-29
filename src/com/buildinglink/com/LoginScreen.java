@@ -20,37 +20,39 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class LoginScreen {
-    private static AppiumDriver<MobileElement> driver;
-    WebDriverWait wait = new WebDriverWait(driver,120);
+	private static AppiumDriver<MobileElement> driver;
+	WebDriverWait wait = new WebDriverWait(driver,120);
 
-    @BeforeClass public static void setUp() {  //set up desired capabilities
-        DesiredCapabilities	caps = new	DesiredCapabilities();//To	create	an	object
-        caps.setCapability(MobileCapabilityType.DEVICE_NAME, "00f1edb5378094e3"); //Android-057
-        caps.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-        caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, "7.1.1");
-        caps.setCapability(AndroidMobileCapabilityType.APP_PACKAGE,"com.buildinglink.mainapp");//To	specify	the	android	app	package
-        caps.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY,"com.buildinglink.mainapp.login.view.viewcontrollers.activities.SplashActivity");//To specify the	activity which	we	want to	launch
-        try {
-            driver = new AppiumDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), caps);
-        }catch(Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
+	@BeforeClass public static void setUp() {  //set up desired capabilities
+		DesiredCapabilities	caps = new	DesiredCapabilities();//To	create	an	object
+		caps.setCapability(MobileCapabilityType.DEVICE_NAME, "00f1edb5378094e3"); //Android-057
+		caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, "8.0.0"); //Android-057
+		caps.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+		//caps.setCapability(MobileCapabilityType.DEVICE_NAME, "QLF7N16128012393"); //Huawei
+		//caps.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+		caps.setCapability(AndroidMobileCapabilityType.APP_PACKAGE,"com.buildinglink.mainapp");//To specify the android app package
+		caps.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY,"com.buildinglink.mainapp.login.view.viewcontrollers.activities.SplashActivity");//To specify the	activity which we want to launch
+		try {
+			driver = new AppiumDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), caps);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
 
-    @Test
-    public void openForgotPasswordLink() {
-    	driver.findElement(By.id("com.buildinglink.mainapp:id/forgotLogin")).click();
-        String expectedURL = "https://buildinglink.com/v2/global/login/forgotpassword.aspx";
-        String getOpenedLink = driver.findElementById("com.android.chrome:id/url_bar").getText();
-        assertEquals(expectedURL, getOpenedLink);
-        driver.navigate().back();
-    }
+	@Test
+	public void openForgotPasswordLink() {
+		driver.findElement(By.id("com.buildinglink.mainapp:id/forgotLogin")).click();
+		String expectedURL = "https://buildinglink.com/v2/global/login/forgotpassword.aspx";
+		String getOpenedLink = driver.findElementById("com.android.chrome:id/url_bar").getText();
+		assertEquals(expectedURL, getOpenedLink);
+		driver.navigate().back();
+	}
 
 	@Test
 	public void openBuildingLinkPage() {
 		MobileElement buildinglinkLink = driver.findElementById("com.buildinglink.mainapp:id/aboutButton");
-    	if (!buildinglinkLink.isDisplayed()){
-    		driver.launchApp();
+		if (!buildinglinkLink.isDisplayed()){
+			driver.launchApp();
 		}
 
 		buildinglinkLink.click();
@@ -100,9 +102,8 @@ public class LoginScreen {
 
 	@Test
 	public void loginWithInvalidCredentials() {
-		String numAlphabet= "1234567890abcdefghijklmnopqrstuvwxyz";
-		String username = RandomValueGenerator.generateRandomValue(10, numAlphabet);
-		String password = RandomValueGenerator.generateRandomValue(8, numAlphabet);
+		String username = RandomValueGenerator.generateRandomValue(10, "numString");
+		String password = RandomValueGenerator.generateRandomValue(8, "numString");
 
 		driver.findElementById("com.buildinglink.mainapp:id/userNameView").sendKeys(username);
 		driver.findElementById("com.buildinglink.mainapp:id/passwordView").sendKeys(password);
