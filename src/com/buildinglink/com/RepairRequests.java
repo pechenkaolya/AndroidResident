@@ -5,6 +5,7 @@ import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -81,10 +82,8 @@ public class RepairRequests {
         saveButton.click();
     }
 
-    /*
     @AfterClass
     public static void close(){
         driver.closeApp();
     }
-*/
 }
