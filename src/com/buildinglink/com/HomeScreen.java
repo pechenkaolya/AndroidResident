@@ -22,6 +22,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.net.URL;
 import java.time.Duration;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import static com.buildinglink.com.RandomValueGenerator.generateRandomValue;
@@ -44,8 +45,8 @@ public class HomeScreen {
         try {
             driver = new AppiumDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), caps);
 
-            driver.findElementById("com.buildinglink.mainapp:id/userNameView").sendKeys("tuser2");
-            driver.findElementById("com.buildinglink.mainapp:id/passwordView").sendKeys("tuser2");
+            driver.findElementById("com.buildinglink.mainapp:id/userNameView").sendKeys("sotest");
+            driver.findElementById("com.buildinglink.mainapp:id/passwordView").sendKeys("666f4");
             driver.navigate().back();
             driver.findElementById("com.buildinglink.mainapp:id/loginButton").click();
         }catch(Exception e) {
@@ -125,16 +126,12 @@ public class HomeScreen {
         greenPlusButton.click();
         MobileElement repairRequestsButton = driver.findElementById("com.buildinglink.mainapp:id/submitARepairRequest");
         repairRequestsButton.click();
-        MobileElement repairRequestModule = driver.findElement(MobileBy.AndroidUIAutomator(
-                "new UiScrollable(new UiSelector().resourceId(\"com.buildinglink.mainapp:id/moduleRecyclerView\")).scrollIntoView("
-                        + "new UiSelector().text(\"Repair Requests\"))"));
-        repairRequestModule.click();
 
-        MobileElement addButton = driver.findElementById("com.buildinglink.mainapp:id/menu_item_add");
-        addButton.click();
-
-        MobileElement chooseFirstCategory = driver.findElementByXPath("\t/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.widget.FrameLayout/android.view.ViewGroup/android.support.v7.widget.RecyclerView/android.widget.FrameLayout[1]/android.widget.FrameLayout");
-        chooseFirstCategory.click();
+        List<MobileElement> chooseFirstCategory = driver.findElementsById("com.buildinglink.mainapp:id/categoryName");
+        int countAllCategories = chooseFirstCategory.size();
+        Random random = new Random();
+        int getRandomCategory = random.nextInt(countAllCategories);
+        chooseFirstCategory.get(getRandomCategory).click();
 
         MobileElement problemDescription = driver.findElementById("com.buildinglink.mainapp:id/requestDescription");
         String problemDescriptionValue = "Green plus probDesc" + generateRandomValue(15,"string");
