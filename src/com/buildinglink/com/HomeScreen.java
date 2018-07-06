@@ -119,6 +119,45 @@ public class HomeScreen {
 
     }
 
+    @Test
+    public void createRequestsViaGreenPlusButton(){
+        MobileElement greenPlusButton = driver.findElementByXPath("\t/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.RelativeLayout[2]/android.widget.ImageButton");
+        greenPlusButton.click();
+        MobileElement repairRequestsButton = driver.findElementById("com.buildinglink.mainapp:id/submitARepairRequest");
+        repairRequestsButton.click();
+        MobileElement repairRequestModule = driver.findElement(MobileBy.AndroidUIAutomator(
+                "new UiScrollable(new UiSelector().resourceId(\"com.buildinglink.mainapp:id/moduleRecyclerView\")).scrollIntoView("
+                        + "new UiSelector().text(\"Repair Requests\"))"));
+        repairRequestModule.click();
+
+        MobileElement addButton = driver.findElementById("com.buildinglink.mainapp:id/menu_item_add");
+        addButton.click();
+
+        MobileElement chooseFirstCategory = driver.findElementByXPath("\t/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.widget.FrameLayout/android.view.ViewGroup/android.support.v7.widget.RecyclerView/android.widget.FrameLayout[1]/android.widget.FrameLayout");
+        chooseFirstCategory.click();
+
+        MobileElement problemDescription = driver.findElementById("com.buildinglink.mainapp:id/requestDescription");
+        String problemDescriptionValue = "Green plus probDesc" + generateRandomValue(15,"string");
+        problemDescription.sendKeys(problemDescriptionValue);
+        driver.navigate().back();
+
+        MobileElement contactPhone = driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().className(\"android.view.ViewGroup\")).scrollIntoView("
+                + "new UiSelector().resourceId(\"com.buildinglink.mainapp:id/phone\"))"));
+        // driver.findElementById("com.buildinglink.mainapp:id/phone");
+        contactPhone.clear();
+        contactPhone.sendKeys(generateRandomValue(10,"numeral"));
+        driver.navigate().back();
+
+        MobileElement additionalEmail = driver.findElementById("com.buildinglink.mainapp:id/email");
+        String additionalEmailValue = generateRandomValue(6,"numString") + "@" + generateRandomValue(4,"numString") + ".com";
+        additionalEmail.clear();
+        additionalEmail.sendKeys(additionalEmailValue);
+        driver.navigate().back();
+
+        MobileElement saveButton = driver.findElementById("com.buildinglink.mainapp:id/menu_save");
+        saveButton.click();
+    }
+
 
 /*
     @AfterClass
