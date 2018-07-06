@@ -160,11 +160,8 @@ public class HomeScreen {
 
     }
 
-
-/*
     @AfterClass
     public static void close(){
         driver.closeApp();
     }
-*/
 }
