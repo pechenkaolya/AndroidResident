@@ -80,5 +80,4 @@ public class RepairRequests {
         MobileElement saveButton = driver.findElementById("com.buildinglink.mainapp:id/menu_save");
         saveButton.click();
     }
-
 }
