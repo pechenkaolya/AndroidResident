@@ -119,26 +119,7 @@ public class HomeScreen {
 
     }
 
-    @Test
-    public void createRepairRequests(){
-        MobileElement repairRequestModule = driver.findElement(MobileBy.AndroidUIAutomator(
-                "new UiScrollable(new UiSelector().resourceId(\"com.buildinglink.mainapp:id/moduleRecyclerView\")).scrollIntoView("
-                        + "new UiSelector().text(\"Repair Requests\"))"));
-        repairRequestModule.click();
 
-        MobileElement addButton = driver.findElementById("com.buildinglink.mainapp:id/menu_item_add");
-        addButton.click();
-
-        MobileElement chooseFirstCategory = driver.findElementByXPath("\t/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.widget.FrameLayout/android.view.ViewGroup/android.support.v7.widget.RecyclerView/android.widget.FrameLayout[1]/android.widget.FrameLayout");
-        chooseFirstCategory.click();
-
-        MobileElement problemDescription = driver.findElementById("com.buildinglink.mainapp:id/requestDescription");
-//        MobileElement contactPhone = driver.findElementById("com.buildinglink.mainapp:id/phone");
-
-        String problemDescriptionValue = "probDesc" + generateRandomValue(15,"string");
-        problemDescription.sendKeys(problemDescriptionValue);
-
-    }
 /*
     @AfterClass
     public static void close(){
