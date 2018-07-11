@@ -1,4 +1,4 @@
-package com.buildinglink.com;
+package com.buildinglink.mainapp.additionalClasses;
 import java.util.Random;
 
 public class RandomValueGenerator {

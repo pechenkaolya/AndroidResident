@@ -1,31 +1,21 @@
-package com.buildinglink.com;
+package com.buildinglink.mainapp.prodBuild;
 
 import io.appium.java_client.*;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.functions.ActionSupplier;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
-import io.appium.java_client.touch.WaitOptions;
-import io.appium.java_client.touch.offset.PointOption;
 import org.junit.*;
 
 import org.junit.BeforeClass;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.touch.TouchActions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.URL;
-import java.time.Duration;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
 
-import static com.buildinglink.com.RandomValueGenerator.generateRandomValue;
+import static com.buildinglink.mainapp.additionalClasses.RandomValueGenerator.generateRandomValue;
 import static junit.framework.TestCase.assertTrue;
 
 public class HomeScreen {
@@ -40,7 +30,8 @@ public class HomeScreen {
         caps.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
         //caps.setCapability(MobileCapabilityType.DEVICE_NAME, "57daea9e9d064ab4"); //Tab 2
         //caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, "6.0.1");
-        caps.setCapability(AndroidMobileCapabilityType.APP_PACKAGE,"com.buildinglink.mainapp");//To specify the android app package
+        caps.setCapability(AndroidMobileCapabilityType.APP_PACKAGE,"com.buildinglink.mainapp");//package of the prod build
+        //caps.setCapability(AndroidMobileCapabilityType.APP_PACKAGE,"com.buildinglink.mainapp.debug.qa"); //package of the qa build
         caps.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY,"com.buildinglink.mainapp.login.view.viewcontrollers.activities.SplashActivity");//To specify the	activity which we want to launch
         try {
             driver = new AppiumDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), caps);
@@ -127,11 +118,11 @@ public class HomeScreen {
         MobileElement repairRequestsButton = driver.findElementById("com.buildinglink.mainapp:id/submitARepairRequest");
         repairRequestsButton.click();
 
-        List<MobileElement> chooseFirstCategory = driver.findElementsById("com.buildinglink.mainapp:id/categoryName");
-        int countAllCategories = chooseFirstCategory.size();
+        List<MobileElement> chooseCategory = driver.findElementsById("com.buildinglink.mainapp:id/categoryName");
+        int countAllCategories = chooseCategory.size();
         Random random = new Random();
         int getRandomCategory = random.nextInt(countAllCategories);
-        chooseFirstCategory.get(getRandomCategory).click();
+        chooseCategory.get(getRandomCategory).click();
 
         MobileElement problemDescription = driver.findElementById("com.buildinglink.mainapp:id/requestDescription");
         String problemDescriptionValue = "Green plus probDesc" + generateRandomValue(15,"string");

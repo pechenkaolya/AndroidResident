@@ -1,8 +1,9 @@
-package com.buildinglink.com;
+package com.buildinglink.mainapp.prodBuild;
 import java.net.URL;
 import java.time.Year;
 import java.util.concurrent.TimeUnit;
 
+import com.buildinglink.mainapp.additionalClasses.RandomValueGenerator;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;

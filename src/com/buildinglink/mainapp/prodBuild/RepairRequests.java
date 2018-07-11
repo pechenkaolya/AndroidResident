@@ -1,4 +1,4 @@
-package com.buildinglink.com;
+package com.buildinglink.mainapp.prodBuild;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
@@ -14,8 +14,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.URL;
+import java.util.List;
+import java.util.Random;
 
-import static com.buildinglink.com.RandomValueGenerator.generateRandomValue;
+import static com.buildinglink.mainapp.additionalClasses.RandomValueGenerator.generateRandomValue;
 
 public class RepairRequests {
 
@@ -57,8 +59,11 @@ public class RepairRequests {
         MobileElement addButton = driver.findElementById("com.buildinglink.mainapp:id/menu_item_add");
         addButton.click();
 
-        MobileElement chooseFirstCategory = driver.findElementByXPath("\t/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.widget.FrameLayout/android.view.ViewGroup/android.support.v7.widget.RecyclerView/android.widget.FrameLayout[1]/android.widget.FrameLayout");
-        chooseFirstCategory.click();
+        List<MobileElement> chooseCategory = driver.findElementsById("com.buildinglink.mainapp:id/categoryName");
+        int countAllCategories = chooseCategory.size();
+        Random random = new Random();
+        int getRandomCategory = random.nextInt(countAllCategories);
+        chooseCategory.get(getRandomCategory).click();
 
         MobileElement problemDescription = driver.findElementById("com.buildinglink.mainapp:id/requestDescription");
         String problemDescriptionValue = "probDesc" + generateRandomValue(15,"string");
