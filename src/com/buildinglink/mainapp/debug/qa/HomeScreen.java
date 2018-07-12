@@ -54,12 +54,14 @@ public class HomeScreen {
         driver.findElement(By.id("android:id/button1")).click();
     }
 
+    @Ignore
     @Test
     public void createRequestsViaGreenPlusButton(){
         MobileElement greenPlusButton = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup[2]/android.widget.ImageButton");
         greenPlusButton.click();
-        MobileElement repairRequestsButton = driver.findElementById("com.buildinglink.mainapp.debug.qa:id/submitARepairRequest");
-        repairRequestsButton.click();
+
+        MobileElement submitRepairRequestButton = driver.findElementById("com.buildinglink.mainapp.debug.qa:id/submitARepairRequest");
+        submitRepairRequestButton.click();
 
         List<MobileElement> chooseCategory = driver.findElementsById("com.buildinglink.mainapp.debug.qa:id/categoryName");
         int countAllCategories = chooseCategory.size();
@@ -91,7 +93,25 @@ public class HomeScreen {
 
     @Test
     public void createInstructionViaGreenPlusButton(){
+        MobileElement greenPlusButton = driver.findElementByXPath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup[2]/android.widget.ImageButton");
+        greenPlusButton.click();
 
+        MobileElement submitFDIButton = driver.findElementById("com.buildinglink.mainapp.debug.qa:id/submitFdi");
+        submitFDIButton.click();
+
+        List<MobileElement> chooseType = driver.findElementsById("com.buildinglink.mainapp.debug.qa:id/typeName");
+        int countAllTypes = chooseType.size();
+        Random random = new Random();
+        int getRandomType = random.nextInt(countAllTypes);
+        chooseType.get(getRandomType).click();
+
+        MobileElement instructions = driver.findElementById("com.buildinglink.mainapp.debug.qa:id/instruction");
+        String instructionsValue = "Green plus inst" + generateRandomValue(15,"string");
+        instructions.sendKeys(instructionsValue);
+        driver.navigate().back();
+
+        MobileElement saveButton = driver.findElementById("com.buildinglink.mainapp.debug.qa:id/menu_item_save");
+        saveButton.click();
     }
 
     @AfterClass
