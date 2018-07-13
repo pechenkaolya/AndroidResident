@@ -3,6 +3,8 @@ package com.buildinglink.mainapp.debug.qa;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class LoginScreen {
@@ -21,9 +23,15 @@ public class LoginScreen {
     private By commentsLink = By.id("com.buildinglink.mainapp.debug.qa:id/commentsButton");
     private By copyrightValue = By.id("com.buildinglink.mainapp.debug.qa:id/copyright");
     private By error = By.id("android:id/message");
+    private By okButton = By.id("android:id/button1");
 
     public void tapRememberMeCheckbox(){
         driver.findElement(rememberMeCheckbox).click();
+    }
+
+    public HomeScreen tapEnter(){
+        driver.findElement(enterButton).click();
+        return new HomeScreen(driver);
     }
 
     public String openForgotPasswordLink(){
@@ -36,9 +44,10 @@ public class LoginScreen {
         return driver.findElementById("com.android.chrome:id/url_bar").getText();
     }
 
-    public HomeScreen tapEnter(){
-        driver.findElement(enterButton).click();
-        return new HomeScreen(driver);
+    public LoginScreen openCommentsSuggestions (){
+        driver.findElement(commentsLink).click();
+        return this;
+
     }
 
     public LoginScreen typeUsernameField(String username){
@@ -72,10 +81,14 @@ public class LoginScreen {
     }
 
     public String getErrorText(){
+        WebDriverWait wait = new WebDriverWait(driver,120);
+        wait.until(ExpectedConditions.elementToBeClickable(okButton));
         return driver.findElement(error).getText();
     }
 
-
-
+    public LoginScreen tapOnOkButton(){
+        driver.findElement(okButton).click();
+        return this;
+    }
 
 }
