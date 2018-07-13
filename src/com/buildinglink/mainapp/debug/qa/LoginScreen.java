@@ -26,6 +26,16 @@ public class LoginScreen {
         driver.findElement(rememberMeCheckbox).click();
     }
 
+    public String openForgotPasswordLink(){
+        driver.findElement(forgotPasswordLink).click();
+        return driver.findElementById("com.android.chrome:id/url_bar").getText();
+    }
+
+    public String openBuildinglinkLink(){
+        driver.findElement(visitBuildinglinkLink).click();
+        return driver.findElementById("com.android.chrome:id/url_bar").getText();
+    }
+
     public HomeScreen tapEnter(){
         driver.findElement(enterButton).click();
         return new HomeScreen(driver);
