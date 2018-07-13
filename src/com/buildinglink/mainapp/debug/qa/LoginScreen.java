@@ -47,7 +47,6 @@ public class LoginScreen {
     public LoginScreen openCommentsSuggestions (){
         driver.findElement(commentsLink).click();
         return this;
-
     }
 
     public LoginScreen typeUsernameField(String username){
