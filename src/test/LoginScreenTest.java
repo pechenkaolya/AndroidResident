@@ -1,15 +1,15 @@
 package test;
 
+import com.buildinglink.mainapp.additionalClasses.RandomValueGenerator;
 import com.buildinglink.mainapp.debug.qa.LoginScreen;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.net.URL;
 import java.time.Year;
@@ -37,7 +37,6 @@ public class LoginScreenTest {
         }catch(Exception e) {
             System.out.println(e.getMessage());
         }
-
     }
 
     @Test
@@ -47,7 +46,6 @@ public class LoginScreenTest {
     }
 
     @Test
-    @Ignore
     public void checkYearInCopyright(){
         int currentYear = Year.now().getValue();
         String strYear = Integer.toString(currentYear);
@@ -55,7 +53,6 @@ public class LoginScreenTest {
     }
 
     @Test
-    @Ignore
     public void checkForgotPasswordLink(){
         String expectedURL = "https://webservices-live.blkqa.com/v2/global/login/forgotpassword.aspx"; //url for qa build
         assertEquals(expectedURL, loginScreen.openForgotPasswordLink());
@@ -63,16 +60,71 @@ public class LoginScreenTest {
     }
 
     @Test
-    @Ignore
     public void checkBuildinglinkLink(){
         String expectedURL = "https://webservices-live.blkqa.com";
         assertTrue(loginScreen.openBuildinglinkLink().contains(expectedURL));
         driver.navigate().back();
     }
 
+    @Test
+    public void openCommentsSuggestionsLink(){
+        loginScreen.openCommentsSuggestions();
+        driver.navigate().back();
+    }
+
+    @Test
+    public void loginWithInvalidCredentials(){
+        loginScreen.loginWithInvalidCreds(RandomValueGenerator.generateRandomValue(10, "numString"), RandomValueGenerator.generateRandomValue(10, "numString"));
+        String error = loginScreen.getErrorText();
+        String expectedError = "Username or password is incorrect";
+        Assert.assertEquals(expectedError,error);
+        loginScreen.tapOnOkButton();
+    }
+
+    @Test
+    public void loginAsFrontDeskStaff(){
+        loginScreen.loginWithInvalidCreds("tfrontdesk1", "testtest");
+        String error = loginScreen.getErrorText();
+        String expectedError = "This app is restricted to residents";
+        Assert.assertEquals(expectedError,error);
+        loginScreen.tapOnOkButton();
+    }
+
+    @Test
+    public void loginAsMaintenanceStaff(){
+        loginScreen.loginWithInvalidCreds("blmaintenance", "testtest");
+        String error = loginScreen.getErrorText();
+        String expectedError = "This app is restricted to residents";
+        Assert.assertEquals(expectedError,error);
+        loginScreen.tapOnOkButton();
+    }
+
+    @Test
+    public void loginAsCarValet(){
+        loginScreen.loginWithInvalidCreds("tcarv1", "testtest");
+        String error = loginScreen.getErrorText();
+        String expectedError = "This app is restricted to residents";
+        Assert.assertEquals(expectedError,error);
+        loginScreen.tapOnOkButton();
+    }
+
+    @Test
+    @Ignore
+    public void checkRememberMeSwitchedOff() {
+        loginScreen.tapRememberMeCheckbox();
+        loginScreen.loginWithCorrectCreds("sotest","666f4");
+
+    }
+
+    @After
+    @Test
+    public void test(){
+
+    }
+
+
 
     @AfterClass
-    @Ignore
     public static void close() {
         driver.closeApp();
     }
