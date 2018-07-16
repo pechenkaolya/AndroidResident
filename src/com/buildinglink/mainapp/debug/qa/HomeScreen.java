@@ -96,36 +96,18 @@ public class HomeScreen {
         return this;
     }
 
-    public HomeScreen tapSubmitRepairRequestButton(){
-        driver.findElements(submitRepairRequestButton);
-        return this;
+    public RepairRequestCategories tapSubmitRepairRequestButton(){
+        driver.findElement(submitRepairRequestButton).click();
+        return new RepairRequestCategories(driver);
     }
 
-    public RepairRequestsScreen submitRepairRequest(){
-        this.tapGreenPlusButton();
-        this.tapSubmitRepairRequestButton();
-        return new RepairRequestsScreen(driver);
-    }
-
-    public HomeScreen tapSubmitFDIButton(){
-        driver.findElements(submitFDIButton);
-        return this;
-    }
-
-    public FDITypes submitFDI(){
-        this.tapGreenPlusButton();
-        this.tapSubmitFDIButton();
+    public FDITypes tapSubmitFDIButton(){
+        driver.findElement(submitFDIButton).click();
         return new FDITypes(driver);
     }
 
-    public HomeScreen tapPostToBulletinBoardButton(){
-        driver.findElements(postToBulletinBoardButton);
-        return this;
-    }
-
-    public PostingCategories submitPosting(){
-        this.tapGreenPlusButton();
-        this.tapPostToBulletinBoardButton();
+    public PostingCategories tapPostToBulletinBoardButton(){
+        driver.findElement(postToBulletinBoardButton).click();
         return new PostingCategories(driver);
     }
 
