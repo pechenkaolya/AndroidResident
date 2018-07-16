@@ -32,13 +32,17 @@ public class HomeScreen {
     private By refreshButton = By.id("com.buildinglink.mainapp.debug.qa:id/action_refresh");
     private By okButton = By.id("android:id/button1");
     private By cancelButton = By.id("android:id/button2");
-    private By allUpcomingEvents = By.id("com.buildinglink.mainapp:id/agendaDescriptionView");
+    private By allUpcomingEvents = By.id("com.buildinglink.mainapp.debug.qa:id/agendaDescriptionView");
     private By homeIcon = By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup[2]/android.widget.TextView[1]");
     private By lifestyleIcon = By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup[2]/android.widget.TextView[2]");
     private By greenPlusButton = By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup[2]/android.widget.ImageButton");
     private By contactsIcon = By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup[2]/android.widget.TextView[3]");
     private By myProfileIcon = By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup[2]/android.widget.TextView[4]");
-    private By repairRequestsButton = By.name("Repair Requests");
+    private By repairRequestsButton = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().resourceId(\"com.buildinglink.mainapp.debug.qa:id/moduleRecyclerView\")).scrollIntoView("
+            + "new UiSelector().text(\"Repair Requests\"))");
+    private By submitRepairRequestButton = By.id("com.buildinglink.mainapp.debug.qa:id/submitARepairRequest");
+    private By postToBulletinBoardButton = By.id("com.buildinglink.mainapp.debug.qa:id/addBulletinBoardItem");
+    private By submitFDIButton = By.id("com.buildinglink.mainapp.debug.qa:id/submitFdi");
 
     public HomeScreen tapOnOkButton(){
         WebDriverWait wait = new WebDriverWait(driver,120);
@@ -59,9 +63,70 @@ public class HomeScreen {
         return this;
     }
 
+    public EventCalendarScreen openUpcomingEvent(){
+        int countAllEvents = driver.findElements(allUpcomingEvents).size();
+        Random random = new Random();
+        int getRandomEvent = random.nextInt(countAllEvents);
+        driver.findElements(allUpcomingEvents).get(getRandomEvent).click();
+        return new EventCalendarScreen(driver);
+    }
+
     public HomeScreen tapHomeIcon(){
         driver.findElement(homeIcon).click();
         return this;
+    }
+
+    public HomeScreen tapLifestyleIcon(){
+        driver.findElement(lifestyleIcon).click();
+        return this;
+    }
+
+    public HomeScreen tapContactsButton(){
+        driver.findElement(contactsIcon).click();
+        return this;
+    }
+
+    public HomeScreen tapMyProfileButton(){
+        driver.findElement(myProfileIcon).click();
+        return this;
+    }
+
+    public HomeScreen tapGreenPlusButton(){
+        driver.findElement(greenPlusButton).click();
+        return this;
+    }
+
+    public HomeScreen tapSubmitRepairRequestButton(){
+        driver.findElements(submitRepairRequestButton);
+        return this;
+    }
+
+    public RepairRequestsScreen submitRepairRequest(){
+        this.tapGreenPlusButton();
+        this.tapSubmitRepairRequestButton();
+        return new RepairRequestsScreen(driver);
+    }
+
+    public HomeScreen tapSubmitFDIButton(){
+        driver.findElements(submitFDIButton);
+        return this;
+    }
+
+    public FDITypes submitFDI(){
+        this.tapGreenPlusButton();
+        this.tapSubmitFDIButton();
+        return new FDITypes(driver);
+    }
+
+    public HomeScreen tapPostToBulletinBoardButton(){
+        driver.findElements(postToBulletinBoardButton);
+        return this;
+    }
+
+    public PostingCategories submitPosting(){
+        this.tapGreenPlusButton();
+        this.tapPostToBulletinBoardButton();
+        return new PostingCategories(driver);
     }
 
     public HomeScreen tapRepairRequestsButton(){
@@ -73,11 +138,5 @@ public class HomeScreen {
         this.tapRepairRequestsButton();
         return new RepairRequestsScreen(driver);
     }
-
-
-
-
-
-
 
 }
