@@ -3,6 +3,7 @@ package com.buildinglink.mainapp.debug.qa;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 
 import java.util.Date;
 import java.util.List;
@@ -21,9 +22,17 @@ public class NewInstruction {
     private By expiresField = By.id("com.buildinglink.mainapp.debug.qa:id/expires");
     private By error = By.id("android:id/message");
     private By okButton = By.id("android:id/button1");
+    private By successMessage = By.id("com.buildinglink.mainapp.debug.qa:id/snackbar_text");
+    private By saveWaiverButton = By.id("com.buildinglink.mainapp.debug.qa:id/menu_item_submit");
+    private By waiverField = By.id("com.buildinglink.mainapp.debug.qa:id/waiverEditText");
+    private By waiverCheckbox = By.id("com.buildinglink.mainapp.debug.qa:id/waiverCheckBox");
 
     public void tapSaveButton(){
         driver.findElement(saveButton).click();
+    }
+
+    public String getErrorMessage(){
+        return driver.findElement(error).getText();
     }
 
     public NewInstruction tapOkButton(){
@@ -37,21 +46,43 @@ public class NewInstruction {
         return this;
     }
 
-    public NewInstruction typeStartDate(){
-        //driver.findElement(startDateField).click();
-        List<MobileElement> textFieldsList = driver.findElements(startDateField);
-        int size = textFieldsList.size();
-        textFieldsList.get(0).sendKeys("25");
-        textFieldsList.get(1).sendKeys("Jul");
-        textFieldsList.get(2).sendKeys("2018");
-        this.tapOkButton();
-        return this;
+    public String getSuccessMessage(){
+        return driver.findElement(successMessage).getText();
     }
 
-    public NewInstruction typeExpires(){
-        driver.findElement(expiresField);
-        return this;
+    public void tapSaveWaiverButton(){
+        driver.findElement(saveWaiverButton).click();
     }
 
+    public boolean checkIfWaiverPresents(){
+        try{
+            return driver.findElement(waiverField).isDisplayed();
+        }
+        catch (NoSuchElementException e)
+        {
+            return false;
+        }
+    }
+
+    public boolean checkIfWaiverCheckboxPresents(){
+        try{
+            return driver.findElement(waiverCheckbox).isDisplayed();
+        }
+        catch (NoSuchElementException e)
+        {
+            return false;
+        }
+    }
+
+    public void acceptLiabilityWaiver(){
+        if (this.checkIfWaiverPresents()== true){
+            driver.findElement(waiverField).sendKeys("yes");
+            this.tapSaveWaiverButton();
+        }
+        if (this.checkIfWaiverCheckboxPresents()== true){
+            driver.findElement(waiverCheckbox).click();
+            this.tapSaveWaiverButton();
+        }
+    }
 
 }
