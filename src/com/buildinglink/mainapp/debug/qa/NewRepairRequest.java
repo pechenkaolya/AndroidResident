@@ -5,6 +5,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 
 public class NewRepairRequest {
     private static AppiumDriver<MobileElement> driver;
@@ -14,7 +15,6 @@ public class NewRepairRequest {
 
     private By backButton = By.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]");
     private By saveButton = By.id("com.buildinglink.mainapp.debug.qa:id/menu_save");
-    private By saveWaiverButton = By.id("com.buildinglink.mainapp.debug.qa:id/menu_item_submit");
     private By problemDescriptionField = By.id("com.buildinglink.mainapp.debug.qa:id/requestDescription");
     private By entryInstructionsField = By.id("com.buildinglink.mainapp.debug.qa:id/entryInstructions");
     private By contactPhoneField = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().className(\"android.view.ViewGroup\")).scrollIntoView("
@@ -23,14 +23,12 @@ public class NewRepairRequest {
     private By error = By.id("android:id/message");
     private By okButton = By.id("android:id/button1");
     private By successMessage = By.id("com.buildinglink.mainapp.debug.qa:id/snackbar_text");
+    private By saveWaiverButton = By.id("com.buildinglink.mainapp.debug.qa:id/menu_item_submit");
     private By waiverField = By.id("com.buildinglink.mainapp.debug.qa:id/waiverEditText");
+    private By waiverCheckbox = By.id("com.buildinglink.mainapp.debug.qa:id/waiverCheckBox");
 
     public void tapSaveButton(){
         driver.findElement(saveButton).click();
-    }
-
-    public void tapSaveWaiverButton(){
-        driver.findElement(saveWaiverButton).click();
     }
 
     public String getErrorMessage(){
@@ -72,13 +70,37 @@ public class NewRepairRequest {
         return driver.findElement(successMessage).getText();
     }
 
+    public void tapSaveWaiverButton(){
+        driver.findElement(saveWaiverButton).click();
+    }
+
     public boolean checkIfWaiverPresents(){
-        return driver.findElement(waiverField).isDisplayed();
+        try{
+            return driver.findElement(waiverField).isDisplayed();
+        }
+        catch (NoSuchElementException e)
+        {
+            return false;
+        }
+    }
+
+    public boolean checkIfWaiverCheckboxPresents(){
+        try{
+            return driver.findElement(waiverCheckbox).isDisplayed();
+        }
+        catch (NoSuchElementException e)
+        {
+            return false;
+        }
     }
 
     public void acceptLiabilityWaiver(){
         if (this.checkIfWaiverPresents()== true){
             driver.findElement(waiverField).sendKeys("yes");
+            this.tapSaveWaiverButton();
+        }
+        if (this.checkIfWaiverCheckboxPresents()== true){
+            driver.findElement(waiverCheckbox).click();
             this.tapSaveWaiverButton();
         }
     }
