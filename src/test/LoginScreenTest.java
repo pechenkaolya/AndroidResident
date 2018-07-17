@@ -116,18 +116,9 @@ public class LoginScreenTest {
 
     }
 
-    @After
-    @Test
-    public void test(){
-
-    }
-
-
-
     @AfterClass
     public static void close() {
         driver.closeApp();
     }
-
 
 }
