@@ -6,10 +6,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -23,7 +20,8 @@ public class HomeScreenTest {
     private HomeScreen homeScreen = new HomeScreen(driver);
     private RepairRequestCategories repairRequestCategories = new RepairRequestCategories(driver);
     private NewRepairRequest newRepairRequest = new NewRepairRequest(driver);
-
+    private FDITypes fdiTypes = new FDITypes(driver);
+    private NewInstruction newInstruction = new NewInstruction(driver);
 
     @BeforeClass
     public static void setUp() {  //set up desired capabilities
@@ -48,21 +46,14 @@ public class HomeScreenTest {
     }
 
     @Test
-    @Ignore
     public void openUpcomingEvent(){
         homeScreen.openUpcomingEvent();
         driver.navigate().back();
+        //need to add Assert method
     }
 
     @Test
-    @Ignore
-    public void openRepairRequests(){
-        homeScreen.openRepairRequestsModule();
-        driver.navigate().back();
-    }
-
-    @Test
-    public void openNewRequestViaGreenPlusButton(){
+    public void addRequestViaGreenPlusButton(){
         homeScreen.tapGreenPlusButton();
         homeScreen.tapSubmitRepairRequestButton();
         repairRequestCategories.selectCategory();
@@ -75,7 +66,20 @@ public class HomeScreenTest {
         Assert.assertEquals("Your request has been saved", newRepairRequest.getSuccessMessage());
     }
 
+    @Test
+    public void addInstructionViaGreenPlusButton(){
+        homeScreen.tapGreenPlusButton();
+        homeScreen.tapSubmitFDIButton();
+        fdiTypes.selectType();
+        newInstruction.typeInstructions("Instr"+ RandomValueGenerator.generateRandomValue(15,"string"));
+        newInstruction.tapSaveButton();
+        newInstruction.acceptLiabilityWaiver();
+        Assert.assertEquals("Your instruction has been saved", newInstruction.getSuccessMessage());
+    }
 
-
+    @AfterClass
+    public static void close() {
+        driver.closeApp();
+    }
 
 }
