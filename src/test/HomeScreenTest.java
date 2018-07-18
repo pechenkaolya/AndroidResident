@@ -13,7 +13,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.net.URL;
-import java.util.concurrent.TimeUnit;
 
 public class HomeScreenTest {
     private static AppiumDriver<MobileElement> driver;
