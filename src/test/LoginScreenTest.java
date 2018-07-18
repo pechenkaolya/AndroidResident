@@ -110,7 +110,6 @@ public class LoginScreenTest {
     public void checkRememberMeSwitchedOff() {
         loginScreen.tapRememberMeCheckbox();
         loginScreen.loginWithCorrectCreds("sotest","666f4");
-
     }
 
     @AfterClass
