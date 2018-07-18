@@ -2,6 +2,7 @@ package com.buildinglink.mainapp.additionalClasses;
 import java.util.Random;
 
 public class RandomValueGenerator {
+
     public static String generateRandomValue(int len, String type) {
         Random random = new Random();
         String result = "";
@@ -18,5 +19,12 @@ public class RandomValueGenerator {
             result += dic.charAt(index);
         }
         return result;
+    }
+
+    public static String generateRandomValue(int maxValue){
+        Random random = new Random();
+        int getRandomValue = random.nextInt(maxValue);
+        String strRandomValue = Integer.toString(getRandomValue);
+        return strRandomValue;
     }
 }
