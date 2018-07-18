@@ -7,9 +7,7 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.junit.*;
-import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.net.URL;
 import java.time.Year;
@@ -19,7 +17,6 @@ import static org.junit.Assert.assertTrue;
 
 public class LoginScreenTest {
     private static AppiumDriver<MobileElement> driver;
-    //private LoginScreen loginScreen;
     private LoginScreen loginScreen = new LoginScreen(driver);
 
     @BeforeClass
