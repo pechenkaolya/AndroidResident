@@ -22,6 +22,9 @@ public class HomeScreenTest {
     private NewRepairRequest newRepairRequest = new NewRepairRequest(driver);
     private FDITypes fdiTypes = new FDITypes(driver);
     private NewInstruction newInstruction = new NewInstruction(driver);
+    private PostingCategories postingCategories = new PostingCategories(driver);
+    private PostingSubcategories postingSubcategories = new PostingSubcategories(driver);
+    private NewPosting newPosting = new NewPosting(driver);
 
     @BeforeClass
     public static void setUp() {  //set up desired capabilities
@@ -71,15 +74,29 @@ public class HomeScreenTest {
         homeScreen.tapGreenPlusButton();
         homeScreen.tapSubmitFDIButton();
         fdiTypes.selectType();
-        newInstruction.typeInstructions("Instr"+ RandomValueGenerator.generateRandomValue(15,"string"));
+        newInstruction.typeInstructions("Instr" + RandomValueGenerator.generateRandomValue(15,"string"));
         newInstruction.tapSaveButton();
         newInstruction.acceptLiabilityWaiver();
         Assert.assertEquals("Your instruction has been saved", newInstruction.getSuccessMessage());
+    }
+
+    @Test
+    public void addPostingViaGreenPlusButton(){
+        homeScreen.tapGreenPlusButton();
+        homeScreen.tapPostToBulletinBoardButton();
+        postingCategories.selectCategory();
+        postingSubcategories.selectSubcategory();
+        newPosting.typeTitle("Title" + RandomValueGenerator.generateRandomValue(5, "string"));
+        newPosting.typePrice(RandomValueGenerator.generateRandomValue(1000));
+        newPosting.typeDescription("Desc"+RandomValueGenerator.generateRandomValue(12,"numString"));
+        newPosting.typeRelatedLink(RandomValueGenerator.generateRandomValue(10,"string") + ".com");
+        newPosting.typeDurationOfPost(newPosting.generateRandomDuration());
+        newPosting.tapSaveButton();
+        Assert.assertEquals("Your post has been saved", newPosting.getSuccessMessage());
     }
 
     @AfterClass
     public static void close() {
         driver.closeApp();
     }
-
 }
