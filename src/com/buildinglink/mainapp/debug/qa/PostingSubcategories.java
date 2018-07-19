@@ -15,11 +15,10 @@ public class PostingSubcategories {
 
     private By subcategoriesList = By.id("com.buildinglink.mainapp.debug.qa:id/bulletinBoardCategory");
 
-    public NewPosting selectSubcategory(){
+    public void selectSubcategory(){
         int countAllSubcategories = driver.findElements(subcategoriesList).size();
         Random random = new Random();
         int getRandomCategory = random.nextInt(countAllSubcategories);
         driver.findElements(subcategoriesList).get(getRandomCategory).click();
-        return new NewPosting(driver);
     }
 }
