@@ -29,7 +29,7 @@ public class LoginScreen {
         driver.findElement(rememberMeCheckbox).click();
     }
 
-    public HomeScreen tapEnter(){
+    private HomeScreen tapEnter(){
         driver.findElement(enterButton).click();
         return new HomeScreen(driver);
     }
@@ -49,12 +49,12 @@ public class LoginScreen {
         return this;
     }
 
-    public LoginScreen typeUsernameField(String username){
+    private LoginScreen typeUsernameField(String username){
         driver.findElement(usernameField).sendKeys(username);
         return this;
     }
 
-    public LoginScreen typePasswordField(String password){
+    private LoginScreen typePasswordField(String password){
         driver.findElement(passwordField).sendKeys(password);
         return this;
     }
