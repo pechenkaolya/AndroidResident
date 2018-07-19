@@ -50,11 +50,11 @@ public class NewInstruction {
         return driver.findElement(successMessage).getText();
     }
 
-    public void tapSaveWaiverButton(){
+    private void tapSaveWaiverButton(){
         driver.findElement(saveWaiverButton).click();
     }
 
-    public boolean checkIfWaiverPresents(){
+    private boolean checkIfWaiverPresents(){
         try{
             return driver.findElement(waiverField).isDisplayed();
         }
@@ -64,7 +64,7 @@ public class NewInstruction {
         }
     }
 
-    public boolean checkIfWaiverCheckboxPresents(){
+    private boolean checkIfWaiverCheckboxPresents(){
         try{
             return driver.findElement(waiverCheckbox).isDisplayed();
         }
