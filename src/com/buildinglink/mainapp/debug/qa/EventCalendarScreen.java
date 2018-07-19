@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 
 public class EventCalendarScreen {
     private static AppiumDriver<MobileElement> driver;
-    private EventCalendarScreen(AppiumDriver<MobileElement> driver) {
+    public EventCalendarScreen(AppiumDriver<MobileElement> driver) {
         this.driver = driver;
     }
 
