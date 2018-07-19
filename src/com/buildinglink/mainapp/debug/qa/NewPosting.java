@@ -74,14 +74,12 @@ public class NewPosting {
     public String generateRandomDuration(){
         Random random = new Random();
         int getRandomDuration = random.nextInt(getMaxDuration());
-        String strRandomDuration = Integer.toString(getRandomDuration);
-        return strRandomDuration;
+        return Integer.toString(getRandomDuration);
     }
 
     private int getMaxDuration(){
         String maxDuration = driver.findElement(maxDurationTitle).getText().replaceFirst(".*?(\\d+).*", "$1");
-        int maxDurationInt = Integer.parseInt(maxDuration);
-        return maxDurationInt;
+        return Integer.parseInt(maxDuration);
     }
 
     public String getSuccessMessage(){
