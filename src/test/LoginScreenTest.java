@@ -40,6 +40,7 @@ public class LoginScreenTest {
     @Ignore
     public void checkLoginWithValidCreds(){
         loginScreen.loginWithCorrectCreds("tuser2","tuser2");
+        //need to add Assert
     }
 
     @Test
@@ -67,6 +68,7 @@ public class LoginScreenTest {
     public void openCommentsSuggestionsLink(){
         loginScreen.openCommentsSuggestions();
         driver.navigate().back();
+        //need to add Assert
     }
 
     @Test
@@ -110,6 +112,7 @@ public class LoginScreenTest {
     public void checkRememberMeSwitchedOff() {
         loginScreen.tapRememberMeCheckbox();
         loginScreen.loginWithCorrectCreds("sotest","666f4");
+        //need to add Assert
     }
 
     @AfterClass
