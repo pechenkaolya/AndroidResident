@@ -78,7 +78,7 @@ public class NewPosting {
         return strRandomDuration;
     }
 
-    public int getMaxDuration(){
+    private int getMaxDuration(){
         String maxDuration = driver.findElement(maxDurationTitle).getText().replaceFirst(".*?(\\d+).*", "$1");
         int maxDurationInt = Integer.parseInt(maxDuration);
         return maxDurationInt;
