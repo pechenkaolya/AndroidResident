@@ -15,11 +15,10 @@ public class RepairRequestCategories {
 
     private By categoriesList = By.id("com.buildinglink.mainapp.debug.qa:id/categoryName");
 
-    public NewRepairRequest selectCategory(){
+    public void selectCategory(){
         int countAllCategories = driver.findElements(categoriesList).size();
         Random random = new Random();
         int getRandomCategory = random.nextInt(countAllCategories);
         driver.findElements(categoriesList).get(getRandomCategory).click();
-        return new NewRepairRequest(driver);
     }
 }
