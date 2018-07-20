@@ -75,7 +75,10 @@ public class RepairRequestsTest {
         repairRequestsScreen.expandRequest();
         repairRequestsScreen.tapEditButton();
         editRepairRequest.changeStatusfield();
-        //editRepairRequest.changeStatus();
+        editRepairRequest.tapRequestCategoryField();
+        repairRequestCategories.selectCategory();
+        editRepairRequest.typeProblemDescription("Updated desc" + RandomValueGenerator.generateRandomValue(5,"numString"));
+        editRepairRequest.typeEntryInstructions("Updated EI" + RandomValueGenerator.generateRandomValue(10,"string"));
 
     }
 
