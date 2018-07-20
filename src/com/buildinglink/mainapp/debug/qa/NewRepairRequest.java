@@ -1,6 +1,5 @@
 package com.buildinglink.mainapp.debug.qa;
 
-import com.buildinglink.mainapp.additionalClasses.RandomValueGenerator;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
@@ -8,34 +7,38 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 
 public class NewRepairRequest {
-    private static AppiumDriver<MobileElement> driver;
+    protected static AppiumDriver<MobileElement> driver;
+    public NewRepairRequest(){};
     public NewRepairRequest(AppiumDriver<MobileElement> driver) {
         this.driver = driver;
     }
 
-    private By backButton = By.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]");
-    private By saveButton = By.id("com.buildinglink.mainapp.debug.qa:id/menu_save");
-    private By problemDescriptionField = By.id("com.buildinglink.mainapp.debug.qa:id/requestDescription");
-    private By entryInstructionsField = By.id("com.buildinglink.mainapp.debug.qa:id/entryInstructions");
-    private By contactPhoneField = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().className(\"android.view.ViewGroup\")).scrollIntoView("
+    protected By backButton = By.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]");
+    protected By saveButton = By.id("com.buildinglink.mainapp.debug.qa:id/menu_save");
+    protected By problemDescriptionField = By.id("com.buildinglink.mainapp.debug.qa:id/requestDescription");
+    protected By entryInstructionsField = By.id("com.buildinglink.mainapp.debug.qa:id/entryInstructions");
+    protected By contactPhoneField = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().className(\"android.view.ViewGroup\")).scrollIntoView("
             + "new UiSelector().resourceId(\"com.buildinglink.mainapp.debug.qa:id/phone\"))");
-    private By additionalEmailField = By.id("com.buildinglink.mainapp.debug.qa:id/email");
-    private By error = By.id("android:id/message");
-    private By okButton = By.id("android:id/button1");
-    private By successMessage = By.id("com.buildinglink.mainapp.debug.qa:id/snackbar_text");
-    private By saveWaiverButton = By.id("com.buildinglink.mainapp.debug.qa:id/menu_item_submit");
-    private By waiverField = By.id("com.buildinglink.mainapp.debug.qa:id/waiverEditText");
-    private By waiverCheckbox = By.id("com.buildinglink.mainapp.debug.qa:id/waiverCheckBox");
+    protected By additionalEmailField = By.id("com.buildinglink.mainapp.debug.qa:id/email");
+    protected By error = By.id("android:id/message");
+    protected By okButton = By.id("android:id/button1");
+    protected By successMessage = By.id("com.buildinglink.mainapp.debug.qa:id/snackbar_text");
+    protected By saveWaiverButton = By.id("com.buildinglink.mainapp.debug.qa:id/menu_item_submit");
+    protected By waiverField = By.id("com.buildinglink.mainapp.debug.qa:id/waiverEditText");
+    protected By waiverCheckbox = By.id("com.buildinglink.mainapp.debug.qa:id/waiverCheckBox");
 
     public void tapSaveButton(){
         driver.findElement(saveButton).click();
     }
 
     public String getErrorMessage(){
-        return driver.findElement(error).getText();
+        String getError = driver.findElement(error).getText();
+        this.tapOkButton();
+        driver.navigate().back();
+        return getError;
     }
 
-    public NewRepairRequest tapOnOkButton(){
+    private NewRepairRequest tapOkButton(){
         driver.findElement(okButton).click();
         return this;
     }
@@ -70,11 +73,11 @@ public class NewRepairRequest {
         return driver.findElement(successMessage).getText();
     }
 
-    public void tapSaveWaiverButton(){
+    private void tapSaveWaiverButton(){
         driver.findElement(saveWaiverButton).click();
     }
 
-    public boolean checkIfWaiverPresents(){
+    private boolean checkIfWaiverPresents(){
         try{
             return driver.findElement(waiverField).isDisplayed();
         }
@@ -84,7 +87,7 @@ public class NewRepairRequest {
         }
     }
 
-    public boolean checkIfWaiverCheckboxPresents(){
+    private boolean checkIfWaiverCheckboxPresents(){
         try{
             return driver.findElement(waiverCheckbox).isDisplayed();
         }
@@ -95,11 +98,11 @@ public class NewRepairRequest {
     }
 
     public void acceptLiabilityWaiver(){
-        if (this.checkIfWaiverPresents()== true){
+        if (this.checkIfWaiverPresents()){
             driver.findElement(waiverField).sendKeys("yes");
             this.tapSaveWaiverButton();
         }
-        if (this.checkIfWaiverCheckboxPresents()== true){
+        if (this.checkIfWaiverCheckboxPresents()){
             driver.findElement(waiverCheckbox).click();
             this.tapSaveWaiverButton();
         }
