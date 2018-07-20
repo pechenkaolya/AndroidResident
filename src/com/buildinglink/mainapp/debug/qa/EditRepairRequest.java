@@ -6,8 +6,6 @@ import org.openqa.selenium.By;
 import java.util.Random;
 
 public class EditRepairRequest extends NewRepairRequest {
-    //private static AppiumDriver<MobileElement> driver;
-
     public EditRepairRequest(AppiumDriver<MobileElement> driver) {
         this.driver = driver;
     }
@@ -48,7 +46,7 @@ public class EditRepairRequest extends NewRepairRequest {
 
     private int getRandomStatusInt(){
         Random random = new Random();
-        int randomStatusInt = random.nextInt(2);
+        int randomStatusInt = random.nextInt(3);
         if (getCurrentStatusInt()==randomStatusInt){
             if(getCurrentStatusInt()==0){
                 randomStatusInt = 1;
@@ -61,6 +59,24 @@ public class EditRepairRequest extends NewRepairRequest {
             }
         }
         return randomStatusInt;
+    }
+
+    public void tapRequestCategoryField(){
+        driver.findElement(requestCategory).click();
+    }
+
+    public EditRepairRequest typeProblemDescription(String problemDescription) {
+        driver.findElement(problemDescriptionField).clear();
+        driver.findElement(problemDescriptionField).sendKeys(problemDescription);
+        driver.navigate().back();
+        return this;
+    }
+
+    public EditRepairRequest typeEntryInstructions(String entryInstructions) {
+        driver.findElement(entryInstructionsField).clear();
+        driver.findElement(entryInstructionsField).sendKeys(entryInstructions);
+        driver.navigate().back();
+        return this;
     }
 
 
