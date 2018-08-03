@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import java.util.Random;
 
 public class EditRepairRequest extends NewRepairRequest {
+
     public EditRepairRequest(AppiumDriver<MobileElement> driver) {
         this.driver = driver;
     }
@@ -16,6 +17,8 @@ public class EditRepairRequest extends NewRepairRequest {
     private By closedStatus = By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.widget.FrameLayout/android.view.ViewGroup/android.support.v7.widget.RecyclerView/android.widget.FrameLayout[3]/android.widget.FrameLayout/android.view.ViewGroup/android.widget.TextView");
     private By statusCheckedIndicator = By.id("com.buildinglink.mainapp.debug.qa:id/checkedIndicator");
     private By requestCategory = By.id(("com.buildinglink.mainapp.debug.qa:id/category"));
+
+    private NewRepairRequest newRepairRequest = new NewRepairRequest(driver);
 
     public EditRepairRequest changeStatusfield() {
         this.getCurrentStatusInt();
@@ -65,6 +68,21 @@ public class EditRepairRequest extends NewRepairRequest {
         driver.findElement(requestCategory).click();
     }
 
+    @Override
+    public void typeProblemDescription(String problemDescription)
+    {
+        driver.findElement(problemDescriptionField).clear();
+        super.typeProblemDescription(problemDescription);
+    }
+
+
+/*
+    @Override
+    public void typeProblemDescription(String problemDescription) {
+        driver.findElement(problemDescriptionField).clear();
+        newRepairRequest.typeProblemDescription()
+    }
+/*
     public EditRepairRequest typeProblemDescription(String problemDescription) {
         driver.findElement(problemDescriptionField).clear();
         driver.findElement(problemDescriptionField).sendKeys(problemDescription);
@@ -78,6 +96,7 @@ public class EditRepairRequest extends NewRepairRequest {
         driver.navigate().back();
         return this;
     }
+    */
 
 
 }
