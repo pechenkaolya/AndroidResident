@@ -43,10 +43,9 @@ public class NewRepairRequest {
         return this;
     }
 
-    public NewRepairRequest typeProblemDescription(String problemDescription) {
+    public void typeProblemDescription(String problemDescription) {
         driver.findElement(problemDescriptionField).sendKeys(problemDescription);
         driver.navigate().back();
-        return this;
     }
 
     public NewRepairRequest typeEntryInstructions(String entryInstructions) {
