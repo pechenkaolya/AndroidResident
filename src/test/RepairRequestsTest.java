@@ -79,6 +79,11 @@ public class RepairRequestsTest {
         repairRequestCategories.selectCategory();
         editRepairRequest.typeProblemDescription("Updated desc" + RandomValueGenerator.generateRandomValue(5,"numString"));
         editRepairRequest.typeEntryInstructions("Updated EI" + RandomValueGenerator.generateRandomValue(10,"string"));
+        editRepairRequest.typeContactPhone(RandomValueGenerator.generateRandomValue(10,"numeral"));
+        editRepairRequest.typeAdditionalEmail(RandomValueGenerator.generateRandomValue(10,"numString") + "@"+RandomValueGenerator.generateRandomValue(10,"numString")+".com");
+        editRepairRequest.tapSaveButton();
+        editRepairRequest.acceptLiabilityWaiver();
+        Assert.assertEquals("Your request has been saved", editRepairRequest.getSuccessMessage());
 
     }
 
