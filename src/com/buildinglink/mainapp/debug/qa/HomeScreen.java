@@ -40,6 +40,8 @@ public class HomeScreen {
     private By myProfileIcon = By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup[2]/android.widget.TextView[4]");
     private By repairRequestsButton = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().resourceId(\"com.buildinglink.mainapp.debug.qa:id/moduleRecyclerView\")).scrollIntoView("
             + "new UiSelector().text(\"Repair Requests\"))");
+    private By fDInstructionsButton = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().resourceId(\"com.buildinglink.mainapp.debug.qa:id/moduleRecyclerView\")).scrollIntoView("
+            + "new UiSelector().text(\"Front Desk Instructions\"))");
     private By submitRepairRequestButton = By.id("com.buildinglink.mainapp.debug.qa:id/submitARepairRequest");
     private By postToBulletinBoardButton = By.id("com.buildinglink.mainapp.debug.qa:id/addBulletinBoardItem");
     private By submitFDIButton = By.id("com.buildinglink.mainapp.debug.qa:id/submitFdi");
@@ -114,6 +116,10 @@ public class HomeScreen {
     public HomeScreen tapRepairRequestsButton(){
         driver.findElement(repairRequestsButton).click();
         return this;
+    }
+
+    public void tapFDIButton(){
+        driver.findElement(fDInstructionsButton).click();
     }
 
     public RepairRequestsScreen openRepairRequestsModule (){
