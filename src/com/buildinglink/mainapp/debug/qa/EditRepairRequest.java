@@ -75,28 +75,26 @@ public class EditRepairRequest extends NewRepairRequest {
         super.typeProblemDescription(problemDescription);
     }
 
-
-/*
     @Override
-    public void typeProblemDescription(String problemDescription) {
-        driver.findElement(problemDescriptionField).clear();
-        newRepairRequest.typeProblemDescription()
-    }
-/*
-    public EditRepairRequest typeProblemDescription(String problemDescription) {
-        driver.findElement(problemDescriptionField).clear();
-        driver.findElement(problemDescriptionField).sendKeys(problemDescription);
-        driver.navigate().back();
-        return this;
+    public void typeEntryInstructions(String entryInstructions)
+    {
+        driver.findElement(entryInstructionsField).clear();
+        super.typeEntryInstructions(entryInstructions);
     }
 
-    public EditRepairRequest typeEntryInstructions(String entryInstructions) {
-        driver.findElement(entryInstructionsField).clear();
-        driver.findElement(entryInstructionsField).sendKeys(entryInstructions);
-        driver.navigate().back();
-        return this;
+    @Override
+    public void typeContactPhone(String contactPhone)
+    {
+        driver.findElement(contactPhoneField).clear();
+        super.typeContactPhone(contactPhone);
     }
-    */
+
+    @Override
+    public void typeAdditionalEmail(String additionalEmail)
+    {
+        driver.findElement(additionalEmailField).clear();
+        super.typeAdditionalEmail(additionalEmail);
+    }
 
 
 }
