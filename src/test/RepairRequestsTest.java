@@ -74,17 +74,27 @@ public class RepairRequestsTest {
         homeScreen.tapRepairRequestsButton();
         repairRequestsScreen.expandRequest();
         repairRequestsScreen.tapEditButton();
-        editRepairRequest.changeStatusfield();
+        editRepairRequest.changeStatusToRandom();
         editRepairRequest.tapRequestCategoryField();
         repairRequestCategories.selectCategory();
         editRepairRequest.typeProblemDescription("Updated desc" + RandomValueGenerator.generateRandomValue(5,"numString"));
         editRepairRequest.typeEntryInstructions("Updated EI" + RandomValueGenerator.generateRandomValue(10,"string"));
         editRepairRequest.typeContactPhone(RandomValueGenerator.generateRandomValue(10,"numeral"));
-        editRepairRequest.typeAdditionalEmail(RandomValueGenerator.generateRandomValue(10,"numString") + "@"+RandomValueGenerator.generateRandomValue(10,"numString")+".com");
+        editRepairRequest.typeAdditionalEmail(RandomValueGenerator.generateRandomValue(10,"numString") + "@" +RandomValueGenerator.generateRandomValue(10,"numString")+".com");
         editRepairRequest.tapSaveButton();
         editRepairRequest.acceptLiabilityWaiver();
         Assert.assertEquals("Your request has been saved", editRepairRequest.getSuccessMessage());
+    }
 
+    @Test
+    public void closeRequest(){
+       homeScreen.tapRepairRequestsButton();
+       repairRequestsScreen.expandRequest();
+       repairRequestsScreen.tapEditButton();
+       editRepairRequest.changeStatusToClosed();
+       editRepairRequest.tapSaveButton();
+       editRepairRequest.acceptLiabilityWaiver();
+        Assert.assertEquals("Your request has been saved", editRepairRequest.getSuccessMessage());
     }
 
 }
