@@ -121,10 +121,4 @@ public class HomeScreen {
     public void tapFDIButton(){
         driver.findElement(fDInstructionsButton).click();
     }
-
-    public RepairRequestsScreen openRepairRequestsModule (){
-        this.tapRepairRequestsButton();
-        return new RepairRequestsScreen(driver);
-    }
-
 }
