@@ -20,7 +20,7 @@ public class EditRepairRequest extends NewRepairRequest {
 
     private NewRepairRequest newRepairRequest = new NewRepairRequest(driver);
 
-    public EditRepairRequest changeStatusfield() {
+    public EditRepairRequest changeStatusToRandom() {
         this.getCurrentStatusInt();
         int statusIntToChange = this.getRandomStatusInt();
         driver.findElement(statusField).click();
@@ -62,6 +62,11 @@ public class EditRepairRequest extends NewRepairRequest {
             }
         }
         return randomStatusInt;
+    }
+
+    public void changeStatusToClosed(){
+        driver.findElement(statusField).click();
+        driver.findElement(closedStatus).click();
     }
 
     public void tapRequestCategoryField(){
