@@ -18,7 +18,7 @@ public class RepairRequestsScreen {
     private By backButton = By.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]");
     private By title = By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.view.ViewGroup/android.widget.TextView");
     private By addButton = By.id("com.buildinglink.mainapp.debug.qa:id/menu_item_add");
-    private By allRequests = By.className("android.widget.TextView");
+    private By allRequests = By.className("android.view.ViewGroup");
     private By requestDescription = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().className(\"android.support.v7.widget.RecyclerView\")).scrollIntoView("
             + "new UiSelector().resourceId(\"com.buildinglink.mainapp.debug.qa:id/description\"))");
     private By editButton = By.id("com.buildinglink.mainapp.debug.qa:id/editButton");

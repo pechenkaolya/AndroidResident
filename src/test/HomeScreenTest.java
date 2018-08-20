@@ -35,13 +35,15 @@ public class HomeScreenTest {
         caps.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY,"com.buildinglink.mainapp.login.view.viewcontrollers.activities.SplashActivity");//To specify the	activity which we want to launch
         try {
             driver = new AppiumDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), caps);
-            driver.findElementById("com.buildinglink.mainapp.debug.qa:id/userNameView").sendKeys("sotest");
-            driver.findElementById("com.buildinglink.mainapp.debug.qa:id/passwordView").sendKeys("666f4");
-            driver.navigate().back();
-            driver.findElementById("com.buildinglink.mainapp.debug.qa:id/loginButton").click();
-            WebDriverWait wait = new WebDriverWait(driver,120);
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("android:id/alertTitle")));
-            driver.findElement(By.id("android:id/button1")).click();
+
+            LoginScreen loginScreen = new LoginScreen(driver);
+            loginScreen.loginWithCorrectCreds("otest","testtest");
+
+            WebDriverWait wait = new WebDriverWait(driver,10);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("android:id/alertTitle"))); //wait till BuildingLink Push Notifications popup appears
+
+            HomeScreen homeScreen = new HomeScreen(driver);
+            homeScreen.tapOnOkButton();
         }catch(Exception e) {
             System.out.println(e.getMessage());
         }
@@ -56,38 +58,38 @@ public class HomeScreenTest {
 
     @Test
     public void addRequestViaGreenPlusButton(){
-        homeScreen.tapGreenPlusButton();
-        homeScreen.tapSubmitRepairRequestButton();
+        homeScreen.tapGreenPlusButton()
+                  .tapSubmitRepairRequestButton();
         repairRequestCategories.selectCategory();
-        newRepairRequest.typeProblemDescription("ProblemDesc"+ RandomValueGenerator.generateRandomValue(15, "numString"));
-        newRepairRequest.typeEntryInstructions("EntryInst" + RandomValueGenerator.generateRandomValue(15, "numString"));
-        newRepairRequest.typeContactPhone(RandomValueGenerator.generateRandomValue(13,"numeral"));
-        newRepairRequest.typeAdditionalEmail(RandomValueGenerator.generateRandomValue(10,"numString")+"@"+RandomValueGenerator.generateRandomValue(10,"string")+".com");
-        newRepairRequest.tapSaveButton();
+        newRepairRequest.typeProblemDescription("AddedViaGreenDesc"+ RandomValueGenerator.generateRandomValue(15, "numString"))
+                        .typeEntryInstructions("EntryInst" + RandomValueGenerator.generateRandomValue(15, "numString"))
+                        .typeContactPhone(RandomValueGenerator.generateRandomValue(13,"numeral"))
+                        .typeAdditionalEmail(RandomValueGenerator.generateRandomValue(10,"numString")+"@"+RandomValueGenerator.generateRandomValue(10,"string")+".com")
+                        .tapSaveButton();
         newRepairRequest.acceptLiabilityWaiver();
         Assert.assertEquals("Your request has been saved", newRepairRequest.getSuccessMessage());
     }
 
     @Test
     public void addInstructionViaGreenPlusButton(){
-        homeScreen.tapGreenPlusButton();
-        homeScreen.tapSubmitFDIButton();
+        homeScreen.tapGreenPlusButton()
+                  .tapSubmitFDIButton();
         fdiTypes.selectType();
-        newInstruction.typeInstructions("Instr" + RandomValueGenerator.generateRandomValue(15,"string"));
-        newInstruction.tapSaveButton();
+        newInstruction.typeInstructions("AddedViaGreenInstr" + RandomValueGenerator.generateRandomValue(15,"string"))
+                      .tapSaveButton();
         newInstruction.acceptLiabilityWaiver();
         Assert.assertEquals("Your instruction has been saved", newInstruction.getSuccessMessage());
     }
 
     @Test
     public void addPostingViaGreenPlusButton(){
-        homeScreen.tapGreenPlusButton();
-        homeScreen.tapPostToBulletinBoardButton();
+        homeScreen.tapGreenPlusButton()
+                  .tapPostToBulletinBoardButton();
         postingCategories.selectCategory();
         postingSubcategories.selectSubcategory();
-        newPosting.typeTitle("Title" + RandomValueGenerator.generateRandomValue(5, "string"));
-        newPosting.typePrice(RandomValueGenerator.generateRandomValue(1000));
-        newPosting.typeDescription("Desc"+RandomValueGenerator.generateRandomValue(12,"numString"));
+        newPosting.typeTitle("Title" + RandomValueGenerator.generateRandomValue(5, "string"))
+                  .typePrice(RandomValueGenerator.generateRandomValue(1000))
+                  .typeDescription("AddedViaGreenDesc"+RandomValueGenerator.generateRandomValue(12,"numString"));
         newPosting.typeRelatedLink(RandomValueGenerator.generateRandomValue(10,"string") + ".com");
         newPosting.typeDurationOfPost(newPosting.generateRandomDuration());
         newPosting.tapSaveButton();

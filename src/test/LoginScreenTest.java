@@ -110,8 +110,8 @@ public class LoginScreenTest {
     @Test
     @Ignore
     public void checkRememberMeSwitchedOff() {
-        loginScreen.tapRememberMeCheckbox();
-        loginScreen.loginWithCorrectCreds("sotest","666f4");
+        loginScreen.tapRememberMeCheckbox()
+                   .loginWithCorrectCreds("sotest","666f4");
         //need to add Assert
     }
 

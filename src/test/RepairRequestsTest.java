@@ -48,10 +48,10 @@ public class RepairRequestsTest {
 
     @Test
     public void addNewRequest(){
-        homeScreen.tapRepairRequestsButton();
+        homeScreen.openRepairRequestsModule();
         repairRequestsScreen.tapAddButton();
         repairRequestCategories.selectCategory();
-        newRepairRequest.typeProblemDescription("Desc" + RandomValueGenerator.generateRandomValue(10,"string"));
+        newRepairRequest.typeProblemDescription("NewDesc" + RandomValueGenerator.generateRandomValue(10,"string"));
         newRepairRequest.typeEntryInstructions("EntryInst" + RandomValueGenerator.generateRandomValue(10,"string"));
         newRepairRequest.typeContactPhone(RandomValueGenerator.generateRandomValue(10,"numeral"));
         newRepairRequest.typeAdditionalEmail(RandomValueGenerator.generateRandomValue(10,"numString") + "@"+RandomValueGenerator.generateRandomValue(10,"numString")+".com");
@@ -62,7 +62,7 @@ public class RepairRequestsTest {
 
     @Test
     public void checkEmptyDescription(){
-        homeScreen.tapRepairRequestsButton();
+        homeScreen.openRepairRequestsModule();
         repairRequestsScreen.tapAddButton();
         repairRequestCategories.selectCategory();
         newRepairRequest.tapSaveButton();
@@ -71,7 +71,7 @@ public class RepairRequestsTest {
 
     @Test
     public void editRequest(){
-        homeScreen.tapRepairRequestsButton();
+        homeScreen.openRepairRequestsModule();
         repairRequestsScreen.expandRequest();
         repairRequestsScreen.tapEditButton();
         editRepairRequest.changeStatusToRandom();
@@ -88,7 +88,7 @@ public class RepairRequestsTest {
 
     @Test
     public void closeRequest(){
-       homeScreen.tapRepairRequestsButton();
+       homeScreen.openRepairRequestsModule();
        repairRequestsScreen.expandRequest();
        repairRequestsScreen.tapEditButton();
        editRepairRequest.changeStatusToClosed();

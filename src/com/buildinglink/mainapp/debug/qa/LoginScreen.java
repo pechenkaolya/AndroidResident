@@ -25,8 +25,9 @@ public class LoginScreen {
     private By error = By.id("android:id/message");
     private By okButton = By.id("android:id/button1");
 
-    public void tapRememberMeCheckbox(){
+    public LoginScreen tapRememberMeCheckbox(){
         driver.findElement(rememberMeCheckbox).click();
+        return this;
     }
 
     private HomeScreen tapEnter(){
@@ -72,7 +73,7 @@ public class LoginScreen {
         this.typePasswordField(password);
         driver.navigate().back();
         this.tapEnter();
-        return new LoginScreen(driver);
+        return this;
     }
 
     public String getCopyrightValue(){

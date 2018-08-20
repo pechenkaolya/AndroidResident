@@ -45,26 +45,30 @@ public class NewRepairRequest {
         return this;
     }
 
-    public void typeProblemDescription(String problemDescription) {
+    public NewRepairRequest typeProblemDescription(String problemDescription) {
         driver.findElement(problemDescriptionField).sendKeys(problemDescription);
         driver.navigate().back();
+        return this;
     }
 
-    public void typeEntryInstructions(String entryInstructions) {
+    public NewRepairRequest typeEntryInstructions(String entryInstructions) {
         driver.findElement(entryInstructionsField).sendKeys(entryInstructions);
         driver.navigate().back();
+        return this;
     }
 
-    public void typeContactPhone(String contactPhone) {
+    public NewRepairRequest typeContactPhone(String contactPhone) {
         driver.findElement(contactPhoneField).clear();
         driver.findElement(contactPhoneField).sendKeys(contactPhone);
         driver.navigate().back();
+        return this;
     }
 
-    public void typeAdditionalEmail(String additionalEmail) {
+    public NewRepairRequest typeAdditionalEmail(String additionalEmail) {
         driver.findElement(additionalEmailField).clear();
         driver.findElement(additionalEmailField).sendKeys(additionalEmail);
         driver.navigate().back();
+        return this;
     }
 
     public String getSuccessMessage(){

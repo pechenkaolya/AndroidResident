@@ -113,12 +113,14 @@ public class HomeScreen {
         return new PostingCategories(driver);
     }
 
-    public HomeScreen tapRepairRequestsButton(){
+    public RepairRequestsScreen openRepairRequestsModule(){
         driver.findElement(repairRequestsButton).click();
-        return this;
+        return new RepairRequestsScreen(driver);
     }
 
-    public void tapFDIButton(){
+    public FrontDeskInstructionsScreen openFDInstructionsModule(){
         driver.findElement(fDInstructionsButton).click();
+        return new FrontDeskInstructionsScreen(driver);
     }
+
 }

@@ -32,7 +32,10 @@ public class NewInstruction {
     }
 
     public String getErrorMessage(){
-        return driver.findElement(error).getText();
+        String getError = driver.findElement(error).getText();
+        this.tapOkButton();
+        driver.navigate().back();
+        return getError;
     }
 
     public NewInstruction tapOkButton(){
