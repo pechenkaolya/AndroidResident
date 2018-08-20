@@ -68,6 +68,11 @@ public class LoginScreen {
         return new HomeScreen(driver);
     }
 
+    public HomeScreen loginWithTestUser() {
+        this.loginWithCorrectCreds("otest","testtest");
+        return new HomeScreen(driver);
+    }
+
     public LoginScreen loginWithInvalidCreds(String username, String password){
         this.typeUsernameField(username);
         this.typePasswordField(password);
