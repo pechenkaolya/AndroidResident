@@ -1,10 +1,7 @@
 package test;
 
 import com.buildinglink.mainapp.additionalClasses.RandomValueGenerator;
-import com.buildinglink.mainapp.debug.qa.FDITypes;
-import com.buildinglink.mainapp.debug.qa.FrontDeskInstructionsScreen;
-import com.buildinglink.mainapp.debug.qa.HomeScreen;
-import com.buildinglink.mainapp.debug.qa.NewInstruction;
+import com.buildinglink.mainapp.debug.qa.*;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
@@ -35,13 +32,12 @@ public class FDInstructionsTest {
         caps.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY,"com.buildinglink.mainapp.login.view.viewcontrollers.activities.SplashActivity");//To specify the	activity which we want to launch
         try {
             driver = new AppiumDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), caps);
-            driver.findElementById("com.buildinglink.mainapp.debug.qa:id/userNameView").sendKeys("sotest");
-            driver.findElementById("com.buildinglink.mainapp.debug.qa:id/passwordView").sendKeys("666f4");
-            driver.navigate().back();
-            driver.findElementById("com.buildinglink.mainapp.debug.qa:id/loginButton").click();
-            WebDriverWait wait = new WebDriverWait(driver,120);
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("android:id/alertTitle")));
-            driver.findElement(By.id("android:id/button1")).click();
+            LoginScreen loginScreen = new LoginScreen(driver);
+            loginScreen.loginWithTestUser();
+            WebDriverWait wait = new WebDriverWait(driver,20);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("android:id/alertTitle"))); //wait till BuildingLink Push Notifications popup appears
+            HomeScreen homeScreen = new HomeScreen(driver);
+            homeScreen.tapOnOkButton();
         }catch(Exception e) {
             System.out.println(e.getMessage());
         }

@@ -34,13 +34,12 @@ public class RepairRequestsTest {
         caps.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY,"com.buildinglink.mainapp.login.view.viewcontrollers.activities.SplashActivity");//To specify the	activity which we want to launch
         try {
             driver = new AppiumDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), caps);
-            driver.findElementById("com.buildinglink.mainapp.debug.qa:id/userNameView").sendKeys("sotest");
-            driver.findElementById("com.buildinglink.mainapp.debug.qa:id/passwordView").sendKeys("666f4");
-            driver.navigate().back();
-            driver.findElementById("com.buildinglink.mainapp.debug.qa:id/loginButton").click();
-            WebDriverWait wait = new WebDriverWait(driver,120);
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("android:id/alertTitle")));
-            driver.findElement(By.id("android:id/button1")).click();
+            LoginScreen loginScreen = new LoginScreen(driver);
+            loginScreen.loginWithTestUser();
+            WebDriverWait wait = new WebDriverWait(driver,20);
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("android:id/alertTitle"))); //wait till BuildingLink Push Notifications popup appears
+            HomeScreen homeScreen = new HomeScreen(driver);
+            homeScreen.tapOnOkButton();
         }catch(Exception e) {
             System.out.println(e.getMessage());
         }
@@ -51,11 +50,11 @@ public class RepairRequestsTest {
         homeScreen.openRepairRequestsModule();
         repairRequestsScreen.tapAddButton();
         repairRequestCategories.selectCategory();
-        newRepairRequest.typeProblemDescription("NewDesc" + RandomValueGenerator.generateRandomValue(10,"string"));
-        newRepairRequest.typeEntryInstructions("EntryInst" + RandomValueGenerator.generateRandomValue(10,"string"));
-        newRepairRequest.typeContactPhone(RandomValueGenerator.generateRandomValue(10,"numeral"));
-        newRepairRequest.typeAdditionalEmail(RandomValueGenerator.generateRandomValue(10,"numString") + "@"+RandomValueGenerator.generateRandomValue(10,"numString")+".com");
-        newRepairRequest.tapSaveButton();
+        newRepairRequest.typeProblemDescription("NewDesc" + RandomValueGenerator.generateRandomValue(10,"string"))
+                .typeEntryInstructions("EntryInst" + RandomValueGenerator.generateRandomValue(10,"string"))
+                .typeContactPhone(RandomValueGenerator.generateRandomValue(10,"numeral"))
+                .typeAdditionalEmail(RandomValueGenerator.generateRandomValue(10,"numString") + "@"+RandomValueGenerator.generateRandomValue(10,"numString")+".com")
+                .tapSaveButton();
         newRepairRequest.acceptLiabilityWaiver();
         Assert.assertEquals("Your request has been saved", newRepairRequest.getSuccessMessage());
     }
@@ -88,12 +87,12 @@ public class RepairRequestsTest {
 
     @Test
     public void closeRequest(){
-       homeScreen.openRepairRequestsModule();
-       repairRequestsScreen.expandRequest();
-       repairRequestsScreen.tapEditButton();
-       editRepairRequest.changeStatusToClosed();
-       editRepairRequest.tapSaveButton();
-       editRepairRequest.acceptLiabilityWaiver();
+        homeScreen.openRepairRequestsModule();
+        repairRequestsScreen.expandRequest();
+        repairRequestsScreen.tapEditButton();
+        editRepairRequest.changeStatusToClosed();
+        editRepairRequest.tapSaveButton();
+        editRepairRequest.acceptLiabilityWaiver();
         Assert.assertEquals("Your request has been saved", editRepairRequest.getSuccessMessage());
     }
 
