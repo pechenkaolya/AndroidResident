@@ -64,9 +64,10 @@ public class EditRepairRequest extends NewRepairRequest {
         return randomStatusInt;
     }
 
-    public void changeStatusToClosed(){
+    public EditRepairRequest changeStatusToClosed(){
         driver.findElement(statusField).click();
         driver.findElement(closedStatus).click();
+        return this;
     }
 
     public void tapRequestCategoryField(){
