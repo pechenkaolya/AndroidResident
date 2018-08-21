@@ -1,14 +1,12 @@
 package test;
 
+import com.buildinglink.mainapp.additionalClasses.DeviceDesiredCapabilities;
 import com.buildinglink.mainapp.additionalClasses.RandomValueGenerator;
 import com.buildinglink.mainapp.debug.qa.*;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.remote.AndroidMobileCapabilityType;
-import io.appium.java_client.remote.MobileCapabilityType;
 import org.junit.*;
 import org.openqa.selenium.By;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -26,21 +24,19 @@ public class HomeScreenTest {
     private NewPosting newPosting = new NewPosting(driver);
 
     @BeforeClass
-    public static void setUp() {  //set up desired capabilities
-        DesiredCapabilities caps = new	DesiredCapabilities();//To	create	an	object
-        caps.setCapability(MobileCapabilityType.DEVICE_NAME, "00f1edb5378094e3"); //Android-057
-        caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, "8.0.0"); //Android-057
-        caps.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-        caps.setCapability(AndroidMobileCapabilityType.APP_PACKAGE,"com.buildinglink.mainapp.debug.qa"); //package of the qa build
-        caps.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY,"com.buildinglink.mainapp.login.view.viewcontrollers.activities.SplashActivity");//To specify the	activity which we want to launch
+    public static void setUp() {
         try {
-            driver = new AppiumDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), caps);
+            driver = new AppiumDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), DeviceDesiredCapabilities.setUpNexus5X());
+
             LoginScreen loginScreen = new LoginScreen(driver);
             loginScreen.loginWithTestUser();
+
             WebDriverWait wait = new WebDriverWait(driver,20);
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("android:id/alertTitle"))); //wait till BuildingLink Push Notifications popup appears
+
             HomeScreen homeScreen = new HomeScreen(driver);
             homeScreen.tapOnOkButton();
+
         }catch(Exception e) {
             System.out.println(e.getMessage());
         }
