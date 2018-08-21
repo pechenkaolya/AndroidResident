@@ -5,6 +5,7 @@ import com.buildinglink.mainapp.additionalClasses.RandomValueGenerator;
 import com.buildinglink.mainapp.debug.qa.*;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -56,10 +57,12 @@ public class FDInstructionsTest {
         fdInstructionsScreen.tapAddButton();
         fdiTypes.selectType();
         newInstruction.getErrorMessage();
-        Assert.assertEquals("You must enter a description", newInstruction.getErrorMessage());
+        Assert.assertEquals("You must enter an instruction", newInstruction.getErrorMessage());
     }
 
-
-
+    @AfterClass
+    public static void close() {
+        driver.closeApp();
+    }
 
 }
