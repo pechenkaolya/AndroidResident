@@ -1,17 +1,13 @@
 package test;
 
+import com.buildinglink.mainapp.additionalClasses.DeviceDesiredCapabilities;
 import com.buildinglink.mainapp.additionalClasses.RandomValueGenerator;
 import com.buildinglink.mainapp.debug.qa.LoginScreen;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.remote.AndroidMobileCapabilityType;
-import io.appium.java_client.remote.MobileCapabilityType;
 import org.junit.*;
-import org.openqa.selenium.remote.DesiredCapabilities;
-
 import java.net.URL;
 import java.time.Year;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -20,17 +16,9 @@ public class LoginScreenTest {
     private LoginScreen loginScreen = new LoginScreen(driver);
 
     @BeforeClass
-    public static void setUp() {  //set up desired capabilities
-        DesiredCapabilities caps = new	DesiredCapabilities();//To	create	an	object
-        caps.setCapability(MobileCapabilityType.DEVICE_NAME, "00f1edb5378094e3"); //Android-057
-        caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, "8.0.0"); //Android-057
-        caps.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-        //caps.setCapability(MobileCapabilityType.DEVICE_NAME, "57daea9e9d064ab4"); //Tab 2
-        //caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, "6.0.1");
-        caps.setCapability(AndroidMobileCapabilityType.APP_PACKAGE,"com.buildinglink.mainapp.debug.qa"); //package of the qa build
-        caps.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY,"com.buildinglink.mainapp.login.view.viewcontrollers.activities.SplashActivity");//To specify the	activity which we want to launch
+    public static void setUp() {
         try {
-            driver = new AppiumDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), caps);
+            driver = new AppiumDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), DeviceDesiredCapabilities.setUpNexus5X());
         }catch(Exception e) {
             System.out.println(e.getMessage());
         }
@@ -65,6 +53,7 @@ public class LoginScreenTest {
     }
 
     @Test
+    @Ignore //flaky test
     public void openCommentsSuggestionsLink(){
         loginScreen.openCommentsSuggestions();
         driver.navigate().back();
@@ -100,7 +89,7 @@ public class LoginScreenTest {
 
     @Test
     public void loginAsCarValet(){
-        loginScreen.loginWithInvalidCreds("tcarv1", "testtest");
+        loginScreen.loginWithInvalidCreds("tcarv", "testtest");
         String error = loginScreen.getErrorText();
         String expectedError = "This app is restricted to residents";
         Assert.assertEquals(expectedError,error);
@@ -111,7 +100,7 @@ public class LoginScreenTest {
     @Ignore
     public void checkRememberMeSwitchedOff() {
         loginScreen.tapRememberMeCheckbox()
-                   .loginWithCorrectCreds("sotest","666f4");
+                   .loginWithCorrectCreds("otest","testtest");
         //need to add Assert
     }
 
