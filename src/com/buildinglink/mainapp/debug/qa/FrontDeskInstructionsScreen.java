@@ -18,25 +18,29 @@ public class FrontDeskInstructionsScreen {
             + "new UiSelector().resourceId(\"com.buildinglink.mainapp.debug.qa:id/description\"))");
     private By editButton = By.id("com.buildinglink.mainapp.debug.qa:id/editButtonText");
     private By expireNowButton = By.id("com.buildinglink.mainapp.debug.qa:id/expireNowText");
+    private By okButton = By.id("android:id/button1");
 
     public void tapAddButton(){
         driver.findElement(addButton).click();
     }
 
-    public void expandInstruction(){
+    public FrontDeskInstructionsScreen expandInstruction(){
         driver.findElement(instructionDescription).click();
+        return this;
     }
 
     public void tapEditButton(){
         driver.findElement(editButton).click();
     }
 
-    public void tapExpireNowButton(){
+    public FrontDeskInstructionsScreen tapExpireNowButton(){
         driver.findElement(expireNowButton).click();
+        return this;
     }
 
-
-
-
+    public FrontDeskInstructionsScreen tapOnOkButton(){
+        driver.findElement(okButton);
+        return this;
+    }
 
 }
