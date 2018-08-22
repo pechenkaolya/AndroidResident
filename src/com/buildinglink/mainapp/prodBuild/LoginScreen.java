@@ -3,9 +3,10 @@ import java.net.URL;
 import java.time.Year;
 import java.util.concurrent.TimeUnit;
 
-import com.buildinglink.mainapp.additionalClasses.RandomValueGenerator;
+import com.buildinglink.mainapp.common.RandomValueGenerator;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -50,6 +51,7 @@ public class LoginScreen {
 	}
 
 	@Test
+	@Ignore
 	public void openBuildingLinkPage() {
 		MobileElement buildinglinkLink = driver.findElementById("com.buildinglink.mainapp:id/aboutButton");
 		if (!buildinglinkLink.isDisplayed()){
@@ -64,6 +66,7 @@ public class LoginScreen {
 	}
 	// do not work properly
 	@Test
+	@Ignore
 	public void openCommentsSuggestions() {
 		driver.findElement(By.id("com.buildinglink.mainapp:id/commentsButton")).click();
 		driver.navigate().back();
@@ -85,6 +88,7 @@ public class LoginScreen {
 	}
 
 	@Test
+	@Ignore
 	public void checkRememberMeSwitchedOff() {
 		driver.findElement(By.id("com.buildinglink.mainapp:id/rememberMeCheckbox")).click();
 		loginWithValidCredentials();
@@ -94,6 +98,7 @@ public class LoginScreen {
 	}
 
 	@Test
+	@Ignore
 	public void checkRememberMeSwitchedOn() {
 		loginWithValidCredentials();
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("android:id/alertTitle")));
@@ -131,7 +136,7 @@ public class LoginScreen {
 	public void loginAsMaintenanceStaff()
 	{
 		driver.findElementById("com.buildinglink.mainapp:id/userNameView").sendKeys("blmaintenance");
-		driver.findElementById("com.buildinglink.mainapp:id/passwordView").sendKeys("976ye");
+		driver.findElementById("com.buildinglink.mainapp:id/passwordView").sendKeys("testtest");
 		driver.navigate().back();
 		driver.findElementById("com.buildinglink.mainapp:id/loginButton").click();
 		wait.until(ExpectedConditions.elementToBeClickable(By.id("android:id/button1")));

@@ -1,4 +1,4 @@
-package com.buildinglink.mainapp.additionalClasses;
+package com.buildinglink.mainapp.common;
 
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;

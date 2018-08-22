@@ -17,7 +17,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.Random;
 
-import static com.buildinglink.mainapp.additionalClasses.RandomValueGenerator.generateRandomValue;
+import static com.buildinglink.mainapp.common.RandomValueGenerator.generateRandomValue;
 
 public class RepairRequests {
 
