@@ -22,6 +22,7 @@ public class FDInstructionsTest {
     private FrontDeskInstructionsScreen fdInstructionsScreen = new FrontDeskInstructionsScreen(driver);
     private FDITypes fdiTypes = new FDITypes(driver);
     private NewInstruction newInstruction = new NewInstruction(driver);
+    private EditInstruction editInstruction = new EditInstruction(driver);
 
     @BeforeClass
     public static void setUp() {
@@ -61,6 +62,30 @@ public class FDInstructionsTest {
         newInstruction.tapSaveButton();
         assertTrue(newInstruction.getErrorMessage().contains("You must enter an instruction"));
     }
+
+    @Test
+    public void editInstruction(){
+        homeScreen.openFDInstructionsModule();
+        fdInstructionsScreen.expandInstruction()
+                            .tapEditButton();
+        editInstruction.tapInstructionTypeField();
+        fdiTypes.selectType();
+        editInstruction.typeInstructions("Updated" + RandomValueGenerator.generateRandomValue(15,"string"))
+                .tapSaveButton();
+        editInstruction.acceptLiabilityWaiver();
+        Assert.assertEquals("Your instruction has been saved", editInstruction.getSuccessMessage());
+    }
+
+    @Test
+    public void expireInstruction(){
+        homeScreen.openFDInstructionsModule();
+        fdInstructionsScreen.expandInstruction()
+                            .tapExpireNowButton()
+                            .tapOnOkButton();
+        //need to improve the test case
+
+    }
+
 
     @AfterClass
     public static void close() {
