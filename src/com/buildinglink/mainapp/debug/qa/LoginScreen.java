@@ -1,5 +1,6 @@
 package com.buildinglink.mainapp.debug.qa;
 
+import com.buildinglink.mainapp.common.Server;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
@@ -14,8 +15,8 @@ public class LoginScreen {
         this.driver = driver;
     }
 
-    private By usernameField = By.id("com.buildinglink.mainapp.debug.qa:id/userNameView");
-    private By passwordField = By.id("com.buildinglink.mainapp.debug.qa:id/passwordView");
+    private By usernameField = By.id(Server.returnServer()+"id/userNameView");
+    private By passwordField = By.id(Server.returnServer()+"id/passwordView");
     private By rememberMeCheckbox = By.id("com.buildinglink.mainapp.debug.qa:id/rememberMeCheckbox");
     private By forgotPasswordLink = By.id("com.buildinglink.mainapp.debug.qa:id/forgotLogin");
     private By enterButton = By.id("com.buildinglink.mainapp.debug.qa:id/loginButton");
