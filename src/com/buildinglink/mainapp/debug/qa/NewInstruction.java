@@ -5,27 +5,24 @@ import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 
-import java.util.Date;
-import java.util.List;
-
 public class NewInstruction {
-    private static AppiumDriver<MobileElement> driver;
-
+    protected static AppiumDriver<MobileElement> driver;
+    public NewInstruction(){};
     public NewInstruction(AppiumDriver<MobileElement> driver) {
         this.driver = driver;
     }
 
     private By backButton = By.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]");
-    private By saveButton = By.id("com.buildinglink.mainapp.debug.qa:id/menu_item_save");
-    private By instructionsField = By.id("com.buildinglink.mainapp.debug.qa:id/instruction");
+    protected By saveButton = By.id("com.buildinglink.mainapp.debug.qa:id/menu_item_save");
+    protected By instructionsField = By.id("com.buildinglink.mainapp.debug.qa:id/instruction");
     private By startDateField = By.id("com.buildinglink.mainapp.debug.qa:id/startDate");
     private By expiresField = By.id("com.buildinglink.mainapp.debug.qa:id/expires");
-    private By error = By.id("android:id/message");
-    private By okButton = By.id("android:id/button1");
-    private By successMessage = By.id("com.buildinglink.mainapp.debug.qa:id/snackbar_text");
-    private By saveWaiverButton = By.id("com.buildinglink.mainapp.debug.qa:id/menu_item_submit");
-    private By waiverField = By.id("com.buildinglink.mainapp.debug.qa:id/waiverEditText");
-    private By waiverCheckbox = By.id("com.buildinglink.mainapp.debug.qa:id/waiverCheckBox");
+    protected By error = By.id("android:id/message");
+    protected By okButton = By.id("android:id/button1");
+    protected By successMessage = By.id("com.buildinglink.mainapp.debug.qa:id/snackbar_text");
+    protected By saveWaiverButton = By.id("com.buildinglink.mainapp.debug.qa:id/menu_item_submit");
+    protected By waiverField = By.id("com.buildinglink.mainapp.debug.qa:id/waiverEditText");
+    protected By waiverCheckbox = By.id("com.buildinglink.mainapp.debug.qa:id/waiverCheckBox");
 
     public void tapSaveButton(){
         driver.findElement(saveButton).click();
@@ -78,11 +75,11 @@ public class NewInstruction {
     }
 
     public void acceptLiabilityWaiver(){
-        if (this.checkIfWaiverPresents()== true){
+        if (this.checkIfWaiverPresents()){
             driver.findElement(waiverField).sendKeys("yes");
             this.tapSaveWaiverButton();
         }
-        if (this.checkIfWaiverCheckboxPresents()== true){
+        if (this.checkIfWaiverCheckboxPresents()){
             driver.findElement(waiverCheckbox).click();
             this.tapSaveWaiverButton();
         }
