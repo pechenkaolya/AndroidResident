@@ -25,30 +25,20 @@ public class LoginScreenTest {
     }
 
     @Test
-    @Ignore
-    public void checkLoginWithValidCreds(){
-        loginScreen.loginWithCorrectCreds("tuser2","tuser2");
-        //need to add Assert
-    }
-
-    @Test
     public void checkYearInCopyright(){
         int currentYear = Year.now().getValue();
-        String strYear = Integer.toString(currentYear);
-        assertTrue(loginScreen.getCopyrightValue().contains(strYear));
+        assertTrue(loginScreen.getCopyrightValue().contains(Integer.toString(currentYear)));
     }
 
     @Test
     public void checkForgotPasswordLink(){
-        String expectedURL = "https://webservices-live.blkqa.com/v2/global/login/forgotpassword.aspx"; //url for qa build
-        assertEquals(expectedURL, loginScreen.openForgotPasswordLink());
+        assertEquals("https://webservices-live.blkqa.com/v2/global/login/forgotpassword.aspx", loginScreen.openForgotPasswordLink());
         driver.navigate().back();
     }
 
     @Test
     public void checkBuildinglinkLink(){
-        String expectedURL = "https://webservices-live.blkqa.com";
-        assertTrue(loginScreen.openBuildinglinkLink().contains(expectedURL));
+        assertTrue(loginScreen.openBuildinglinkLink().contains("https://webservices-live.blkqa.com"));
         driver.navigate().back();
     }
 
@@ -63,36 +53,28 @@ public class LoginScreenTest {
     @Test
     public void loginWithInvalidCredentials(){
         loginScreen.loginWithInvalidCreds(RandomValueGenerator.generateRandomValue(10, "numString"), RandomValueGenerator.generateRandomValue(10, "numString"));
-        String error = loginScreen.getErrorText();
-        String expectedError = "Username or password is incorrect";
-        Assert.assertEquals(expectedError,error);
+        Assert.assertEquals("Username or password is incorrect",loginScreen.getErrorText());
         loginScreen.tapOnOkButton();
     }
 
     @Test
     public void loginAsFrontDeskStaff(){
         loginScreen.loginWithInvalidCreds("tfrontdesk1", "testtest");
-        String error = loginScreen.getErrorText();
-        String expectedError = "This app is restricted to residents";
-        Assert.assertEquals(expectedError,error);
+        Assert.assertEquals("This app is restricted to residents",loginScreen.getErrorText());
         loginScreen.tapOnOkButton();
     }
 
     @Test
     public void loginAsMaintenanceStaff(){
         loginScreen.loginWithInvalidCreds("blmaintenance", "testtest");
-        String error = loginScreen.getErrorText();
-        String expectedError = "This app is restricted to residents";
-        Assert.assertEquals(expectedError,error);
+        Assert.assertEquals("This app is restricted to residents",loginScreen.getErrorText());
         loginScreen.tapOnOkButton();
     }
 
     @Test
     public void loginAsCarValet(){
         loginScreen.loginWithInvalidCreds("tcarv", "testtest");
-        String error = loginScreen.getErrorText();
-        String expectedError = "This app is restricted to residents";
-        Assert.assertEquals(expectedError,error);
+        Assert.assertEquals("This app is restricted to residents",loginScreen.getErrorText());
         loginScreen.tapOnOkButton();
     }
 
