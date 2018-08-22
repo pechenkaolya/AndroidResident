@@ -14,6 +14,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.net.URL;
 
+import static org.junit.Assert.assertTrue;
+
 public class FDInstructionsTest {
     private static AppiumDriver<MobileElement> driver;
     private HomeScreen homeScreen = new HomeScreen(driver);
@@ -56,8 +58,8 @@ public class FDInstructionsTest {
         homeScreen.openFDInstructionsModule();
         fdInstructionsScreen.tapAddButton();
         fdiTypes.selectType();
-        newInstruction.getErrorMessage();
-        Assert.assertEquals("You must enter an instruction", newInstruction.getErrorMessage());
+        newInstruction.tapSaveButton();
+        assertTrue(newInstruction.getErrorMessage().contains("You must enter an instruction"));
     }
 
     @AfterClass
