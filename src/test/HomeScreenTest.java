@@ -1,7 +1,7 @@
 package test;
 
-import com.buildinglink.mainapp.additionalClasses.DeviceDesiredCapabilities;
-import com.buildinglink.mainapp.additionalClasses.RandomValueGenerator;
+import com.buildinglink.mainapp.common.DeviceDesiredCapabilities;
+import com.buildinglink.mainapp.common.RandomValueGenerator;
 import com.buildinglink.mainapp.debug.qa.*;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
