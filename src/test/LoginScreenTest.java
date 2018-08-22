@@ -79,7 +79,7 @@ public class LoginScreenTest {
     }
 
     @Test
-    @Ignore
+   // @Ignore
     public void checkRememberMeSwitchedOff() {
         loginScreen.tapRememberMeCheckbox()
                    .loginWithCorrectCreds("otest","testtest");
