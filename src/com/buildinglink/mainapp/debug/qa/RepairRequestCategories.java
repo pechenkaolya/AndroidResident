@@ -1,5 +1,6 @@
 package com.buildinglink.mainapp.debug.qa;
 
+import com.buildinglink.mainapp.common.Server;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
@@ -13,7 +14,7 @@ public class RepairRequestCategories {
         this.driver = driver;
     }
 
-    private By categoriesList = By.id("com.buildinglink.mainapp.debug.qa:id/categoryName");
+    private By categoriesList = By.id(Server.setUpEndpoint()+":id/categoryName");
 
     public void selectCategory(){
         int countAllCategories = driver.findElements(categoriesList).size();
