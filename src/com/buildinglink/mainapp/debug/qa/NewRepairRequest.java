@@ -1,5 +1,6 @@
 package com.buildinglink.mainapp.debug.qa;
 
+import com.buildinglink.mainapp.common.Server;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
@@ -14,11 +15,10 @@ public class NewRepairRequest {
     }
 
     protected By backButton = By.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]");
-    protected By saveButton = By.id("com.buildinglink.mainapp.debug.qa:id/menu_save");
-    protected By problemDescriptionField = By.id("com.buildinglink.mainapp.debug.qa:id/requestDescription");
-    //protected By entryInstructionsField = By.id("com.buildinglink.mainapp.debug.qa:id/entryInstructions");
+    protected By saveButton = By.id(Server.setUpEndpoint()+":id/menu_save");
+    protected By problemDescriptionField = By.id(Server.setUpEndpoint()+":id/requestDescription");
     protected By entryInstructionsField = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().className(\"android.view.ViewGroup\")).scrollIntoView("
-            + "new UiSelector().resourceId(\"com.buildinglink.mainapp.debug.qa:id/entryInstructions\"))");
+            + "new UiSelector().text(\"ENTRY INSTRUCTIONS\"))");
     protected By contactPhoneField = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().className(\"android.view.ViewGroup\")).scrollIntoView("
             + "new UiSelector().resourceId(\"com.buildinglink.mainapp.debug.qa:id/phone\"))");
     protected By additionalEmailField = By.id("com.buildinglink.mainapp.debug.qa:id/email");
