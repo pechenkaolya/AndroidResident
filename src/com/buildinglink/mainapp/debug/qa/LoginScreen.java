@@ -15,14 +15,14 @@ public class LoginScreen {
         this.driver = driver;
     }
 
-    private By usernameField = By.id(Server.returnServer()+"id/userNameView");
-    private By passwordField = By.id(Server.returnServer()+"id/passwordView");
-    private By rememberMeCheckbox = By.id("com.buildinglink.mainapp.debug.qa:id/rememberMeCheckbox");
-    private By forgotPasswordLink = By.id("com.buildinglink.mainapp.debug.qa:id/forgotLogin");
-    private By enterButton = By.id("com.buildinglink.mainapp.debug.qa:id/loginButton");
-    private By visitBuildinglinkLink = By.id("com.buildinglink.mainapp.debug.qa:id/aboutButton");
-    private By commentsLink = By.id("com.buildinglink.mainapp.debug.qa:id/commentsButton");
-    private By copyrightValue = By.id("com.buildinglink.mainapp.debug.qa:id/copyright");
+    private By usernameField = By.id(Server.setUpEndpoint()+":id/userNameView");
+    private By passwordField = By.id(Server.setUpEndpoint()+":id/passwordView");
+    private By rememberMeCheckbox = By.id(Server.setUpEndpoint()+":id/rememberMeCheckbox");
+    private By forgotPasswordLink = By.id(Server.setUpEndpoint()+":id/forgotLogin");
+    private By enterButton = By.id(Server.setUpEndpoint()+":id/loginButton");
+    private By visitBuildinglinkLink = By.id(Server.setUpEndpoint()+":id/aboutButton");
+    private By commentsLink = By.id(Server.setUpEndpoint()+":id/commentsButton");
+    private By copyrightValue = By.id(Server.setUpEndpoint()+":id/copyright");
     private By error = By.id("android:id/message");
     private By okButton = By.id("android:id/button1");
 
@@ -36,14 +36,30 @@ public class LoginScreen {
         return new HomeScreen(driver);
     }
 
-    public String openForgotPasswordLink(){
+    public String returnForgotPasswordLink(){
         driver.findElement(forgotPasswordLink).click();
         return driver.findElementById("com.android.chrome:id/url_bar").getText();
     }
 
-    public String openBuildinglinkLink(){
+    public String expectedForgotPasswordLink(){
+        if (Server.setUpEndpoint()=="com.buildinglink.mainapp.debug.qa")
+            return "https://webservices-live.blkqa.com/v2/global/login/forgotpassword.aspx";
+        if (Server.setUpEndpoint()=="com.buildinglink.mainapp.debug.staging")
+            return "staging.buildinglink.com/v2/global/login/forgotpassword.aspx";
+        else return "https://buildinglink.com/v2/global/login/forgotpassword.aspx";
+    }
+
+    public String returnBuildinglinkLink(){
         driver.findElement(visitBuildinglinkLink).click();
         return driver.findElementById("com.android.chrome:id/url_bar").getText();
+    }
+
+    public String expectedBuildinglinkLink(){
+        if (Server.setUpEndpoint()=="com.buildinglink.mainapp.debug.qa")
+            return "https://webservices-live.blkqa.com";
+        if (Server.setUpEndpoint()=="com.buildinglink.mainapp.debug.staging")
+            return "staging.buildinglink.com";
+        else return "https://buildinglink.com";
     }
 
     public LoginScreen openCommentsSuggestions (){
@@ -61,7 +77,7 @@ public class LoginScreen {
         return this;
     }
 
-    public HomeScreen loginWithCorrectCreds(String username, String password) {
+    public HomeScreen loginWithValidCreds(String username, String password) {
         this.typeUsernameField(username);
         this.typePasswordField(password);
         driver.navigate().back();
@@ -70,7 +86,7 @@ public class LoginScreen {
     }
 
     public HomeScreen loginWithTestUser() {
-        this.loginWithCorrectCreds("otest","testtest");
+        this.loginWithValidCreds("otest","testtest");
         return new HomeScreen(driver);
     }
 
@@ -96,5 +112,7 @@ public class LoginScreen {
         driver.findElement(okButton).click();
         return this;
     }
+
+
 
 }
