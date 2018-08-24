@@ -2,11 +2,11 @@ package com.buildinglink.mainapp.common;
 
 public class Server {
 
-    public static String returnServer(){
+    public static String setUpEndpoint(){
         String qaServer = "com.buildinglink.mainapp.debug.qa:";
-        String stagingServer = "com.buildinglink.mainapp.staging:";
+        String stagingServer = "com.buildinglink.mainapp.debug.staging:";
         String prodServer =  "com.buildinglink.mainapp:";
-        return qaServer;
+        return stagingServer;
     }
 
 }
