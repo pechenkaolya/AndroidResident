@@ -32,13 +32,13 @@ public class LoginScreenTest {
 
     @Test
     public void checkForgotPasswordLink(){
-        assertEquals("https://webservices-live.blkqa.com/v2/global/login/forgotpassword.aspx", loginScreen.openForgotPasswordLink());
+        assertEquals(loginScreen.expectedForgotPasswordLink(), loginScreen.returnForgotPasswordLink());
         driver.navigate().back();
     }
 
     @Test
     public void checkBuildinglinkLink(){
-        assertTrue(loginScreen.openBuildinglinkLink().contains("https://webservices-live.blkqa.com"));
+        assertTrue(loginScreen.returnBuildinglinkLink().contains(loginScreen.expectedBuildinglinkLink()));
         driver.navigate().back();
     }
 
@@ -79,10 +79,10 @@ public class LoginScreenTest {
     }
 
     @Test
-   // @Ignore
+    @Ignore
     public void checkRememberMeSwitchedOff() {
         loginScreen.tapRememberMeCheckbox()
-                   .loginWithCorrectCreds("otest","testtest");
+                   .loginWithTestUser();
         //need to add Assert
     }
 
