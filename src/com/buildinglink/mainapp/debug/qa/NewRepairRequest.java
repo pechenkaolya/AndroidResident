@@ -20,14 +20,14 @@ public class NewRepairRequest {
     protected By entryInstructionsField = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().className(\"android.view.ViewGroup\")).scrollIntoView("
             + "new UiSelector().text(\"ENTRY INSTRUCTIONS\"))");
     protected By contactPhoneField = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().className(\"android.view.ViewGroup\")).scrollIntoView("
-            + "new UiSelector().resourceId(\"com.buildinglink.mainapp.debug.qa:id/phone\"))");
-    protected By additionalEmailField = By.id("com.buildinglink.mainapp.debug.qa:id/email");
+            + "new UiSelector().text(\"CONTACT PHONE\"))");
+    protected By additionalEmailField = By.id(Server.setUpEndpoint()+":id/email");
     protected By error = By.id("android:id/message");
     protected By okButton = By.id("android:id/button1");
-    protected By successMessage = By.id("com.buildinglink.mainapp.debug.qa:id/snackbar_text");
-    protected By saveWaiverButton = By.id("com.buildinglink.mainapp.debug.qa:id/menu_item_submit");
-    protected By waiverField = By.id("com.buildinglink.mainapp.debug.qa:id/waiverEditText");
-    protected By waiverCheckbox = By.id("com.buildinglink.mainapp.debug.qa:id/waiverCheckBox");
+    protected By successMessage = By.id(Server.setUpEndpoint()+":id/snackbar_text");
+    protected By saveWaiverButton = By.id(Server.setUpEndpoint()+":id/menu_item_submit");
+    protected By waiverField = By.id(Server.setUpEndpoint()+":id/waiverEditText");
+    protected By waiverCheckbox = By.id(Server.setUpEndpoint()+":id/waiverCheckBox");
 
     public void tapSaveButton(){
         driver.findElement(saveButton).click();
