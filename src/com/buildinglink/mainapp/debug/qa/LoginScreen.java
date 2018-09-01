@@ -112,7 +112,4 @@ public class LoginScreen {
         driver.findElement(okButton).click();
         return this;
     }
-
-
-
 }
