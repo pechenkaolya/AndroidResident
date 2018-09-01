@@ -1,5 +1,6 @@
 package com.buildinglink.mainapp.debug.qa;
 
+import com.buildinglink.mainapp.common.Server;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
@@ -10,7 +11,7 @@ public class EventCalendarScreen {
         this.driver = driver;
     }
 
-    private By date = By.id("com.buildinglink.mainapp.debug.qa:id/calendarEventDate");
+    private By date = By.id(Server.setEndpoint()+ ":id/calendarEventDate");
 
     public String getDate(){
         return driver.findElement(date).getText();
