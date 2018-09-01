@@ -14,4 +14,14 @@ public class DeviceDesiredCapabilities {
         caps.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY,"com.buildinglink.mainapp.login.view.viewcontrollers.activities.SplashActivity");//To specify the	activity which we want to launch
         return caps;
     }
+
+    public static DesiredCapabilities setUpEmulator(){
+        DesiredCapabilities caps = new	DesiredCapabilities();//To	create	an	object
+        caps.setCapability(MobileCapabilityType.DEVICE_NAME, "emulator-5554");
+        caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, "8.0.0");
+        caps.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
+        caps.setCapability(AndroidMobileCapabilityType.APP_PACKAGE,Server.setEndpoint());
+        caps.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY,"com.buildinglink.mainapp.login.view.viewcontrollers.activities.SplashActivity");//To specify the	activity which we want to launch
+        return caps;
+    }
 }
