@@ -1,5 +1,6 @@
 package com.buildinglink.mainapp.debug.qa;
 
+import com.buildinglink.mainapp.common.Server;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
@@ -14,18 +15,18 @@ public class NewPosting {
         this.driver = driver;
     }
 
-    private By saveButton = By.id("com.buildinglink.mainapp.debug.qa:id/save");
-    private By titleField = By.id("com.buildinglink.mainapp.debug.qa:id/postingTitle");
-    private By priceField = By.id("com.buildinglink.mainapp.debug.qa:id/postingSubjectPrice");
-    private By descriptionField = By.id("com.buildinglink.mainapp.debug.qa:id/postingSubjectDescription");
+    private By saveButton = By.id(Server.setEndpoint()+":id/save");
+    private By titleField = By.id(Server.setEndpoint()+":id/postingTitle");
+    private By priceField = By.id(Server.setEndpoint()+":id/postingSubjectPrice");
+    private By descriptionField = By.id(Server.setEndpoint()+":id/postingSubjectDescription");
     private By relatedLinkField = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().className(\"android.view.ViewGroup\")).scrollIntoView("
             + "new UiSelector().resourceId(\"com.buildinglink.mainapp.debug.qa:id/postingRelatedLink\"))");
     private By durationOfPostField = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().className(\"android.view.ViewGroup\")).scrollIntoView("
             + "new UiSelector().resourceId(\"com.buildinglink.mainapp.debug.qa:id/postDuration\"))");
     private By error = By.id("android:id/message");
     private By okButton = By.id("android:id/button1");
-    private By successMessage = By.id("com.buildinglink.mainapp.debug.qa:id/snackbar_text");
-    private By maxDurationTitle = By.id("com.buildinglink.mainapp.debug.qa:id/postDurationHeader");
+    private By successMessage = By.id(Server.setEndpoint()+":id/snackbar_text");
+    private By maxDurationTitle = By.id(Server.setEndpoint()+":id/postDurationHeader");
 
     public void tapSaveButton(){
         driver.findElement(saveButton).click();
