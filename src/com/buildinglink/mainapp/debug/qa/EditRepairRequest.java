@@ -1,5 +1,6 @@
 package com.buildinglink.mainapp.debug.qa;
 
+import com.buildinglink.mainapp.common.Server;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
@@ -11,12 +12,12 @@ public class EditRepairRequest extends NewRepairRequest {
         this.driver = driver;
     }
 
-    private By statusField = By.id("com.buildinglink.mainapp.debug.qa:id/status");
+    private By statusField = By.id(Server.setEndpoint()+":id/status");
     private By openStatus = By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.widget.FrameLayout/android.view.ViewGroup/android.support.v7.widget.RecyclerView/android.widget.FrameLayout[1]/android.widget.FrameLayout/android.view.ViewGroup/android.widget.TextView");
     private By onHoldStatus = By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.widget.FrameLayout/android.view.ViewGroup/android.support.v7.widget.RecyclerView/android.widget.FrameLayout[2]/android.widget.FrameLayout/android.view.ViewGroup/android.widget.TextView");
     private By closedStatus = By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.widget.FrameLayout/android.view.ViewGroup/android.support.v7.widget.RecyclerView/android.widget.FrameLayout[3]/android.widget.FrameLayout/android.view.ViewGroup/android.widget.TextView");
-    private By statusCheckedIndicator = By.id("com.buildinglink.mainapp.debug.qa:id/checkedIndicator");
-    private By requestCategory = By.id(("com.buildinglink.mainapp.debug.qa:id/category"));
+    private By statusCheckedIndicator = By.id(Server.setEndpoint() + ":id/checkedIndicator");
+    private By requestCategory = By.id((Server.setEndpoint() + ":id/category"));
 
     private NewRepairRequest newRepairRequest = new NewRepairRequest(driver);
 
