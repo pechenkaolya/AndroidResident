@@ -6,6 +6,8 @@ import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
 
+import java.util.Random;
+
 public class FrontDeskInstructionsScreen {
     private static AppiumDriver<MobileElement> driver;
 
@@ -16,7 +18,7 @@ public class FrontDeskInstructionsScreen {
     private By addButton = By.id(Server.setEndpoint()+":id/menu_item_add");
     private By allInstructions = By.className("android.view.ViewGroup");
     private By instructionDescription = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().className(\"android.support.v7.widget.RecyclerView\")).scrollIntoView("
-            + "new UiSelector().resourceId(\"com.buildinglink.mainapp.debug.qa:id/description\"))");
+            + "new UiSelector().clickable(true).className(\"android.view.ViewGroup\"))");
     private By editButton = By.id(Server.setEndpoint()+":id/editButtonText");
     private By expireNowButton = By.id(Server.setEndpoint()+":id/expireNowText");
     private By okButton = By.id("android:id/button1");
@@ -26,7 +28,11 @@ public class FrontDeskInstructionsScreen {
     }
 
     public FrontDeskInstructionsScreen expandInstruction(){
-        driver.findElement(instructionDescription).click();
+        int allInstructionsOnScreen = driver.findElements(instructionDescription).size();
+        System.out.println(allInstructionsOnScreen);
+        Random random = new Random();
+        int getRandomNumber = random.nextInt(allInstructionsOnScreen);
+        driver.findElements(instructionDescription).get(getRandomNumber).click();
         return this;
     }
 
