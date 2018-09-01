@@ -1,5 +1,6 @@
 package com.buildinglink.mainapp.debug.qa;
 
+import com.buildinglink.mainapp.common.Server;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
@@ -13,16 +14,16 @@ public class NewInstruction {
     }
 
     private By backButton = By.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]");
-    protected By saveButton = By.id("com.buildinglink.mainapp.debug.qa:id/menu_item_save");
-    protected By instructionsField = By.id("com.buildinglink.mainapp.debug.qa:id/instruction");
-    private By startDateField = By.id("com.buildinglink.mainapp.debug.qa:id/startDate");
-    private By expiresField = By.id("com.buildinglink.mainapp.debug.qa:id/expires");
+    protected By saveButton = By.id(Server.setEndpoint()+":id/menu_item_save");
+    protected By instructionsField = By.id(Server.setEndpoint()+":id/instruction");
+    private By startDateField = By.id(Server.setEndpoint()+":id/startDate");
+    private By expiresField = By.id(Server.setEndpoint()+":id/expires");
     protected By error = By.id("android:id/message");
     protected By okButton = By.id("android:id/button1");
-    protected By successMessage = By.id("com.buildinglink.mainapp.debug.qa:id/snackbar_text");
-    protected By saveWaiverButton = By.id("com.buildinglink.mainapp.debug.qa:id/menu_item_submit");
-    protected By waiverField = By.id("com.buildinglink.mainapp.debug.qa:id/waiverEditText");
-    protected By waiverCheckbox = By.id("com.buildinglink.mainapp.debug.qa:id/waiverCheckBox");
+    protected By successMessage = By.id(Server.setEndpoint()+":id/snackbar_text");
+    protected By saveWaiverButton = By.id(Server.setEndpoint()+":id/menu_item_submit");
+    protected By waiverField = By.id(Server.setEndpoint()+":id/waiverEditText");
+    protected By waiverCheckbox = By.id(Server.setEndpoint()+":id/waiverCheckBox");
 
     public void tapSaveButton(){
         driver.findElement(saveButton).click();
