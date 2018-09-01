@@ -29,7 +29,6 @@ public class FrontDeskInstructionsScreen {
 
     public FrontDeskInstructionsScreen expandInstruction(){
         int allInstructionsOnScreen = driver.findElements(instructionDescription).size();
-        System.out.println(allInstructionsOnScreen);
         Random random = new Random();
         int getRandomNumber = random.nextInt(allInstructionsOnScreen);
         driver.findElements(instructionDescription).get(getRandomNumber).click();
