@@ -14,7 +14,7 @@ public class RepairRequestCategories {
         this.driver = driver;
     }
 
-    private By categoriesList = By.id(Server.setUpEndpoint()+":id/categoryName");
+    private By categoriesList = By.id(Server.setEndpoint()+":id/categoryName");
 
     public void selectCategory(){
         int countAllCategories = driver.findElements(categoriesList).size();
