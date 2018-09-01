@@ -18,7 +18,7 @@ public class LoginScreenTest {
     @BeforeClass
     public static void setUp() {
         try {
-            driver = new AppiumDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), DeviceDesiredCapabilities.setUpNexus5X());
+            driver = new AppiumDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), DeviceDesiredCapabilities.setUpDevice());
         }catch(Exception e) {
             System.out.println(e.getMessage());
         }
