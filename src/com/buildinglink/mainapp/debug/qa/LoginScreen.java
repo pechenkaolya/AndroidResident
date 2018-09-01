@@ -15,14 +15,14 @@ public class LoginScreen {
         this.driver = driver;
     }
 
-    private By usernameField = By.id(Server.setUpEndpoint()+":id/userNameView");
-    private By passwordField = By.id(Server.setUpEndpoint()+":id/passwordView");
-    private By rememberMeCheckbox = By.id(Server.setUpEndpoint()+":id/rememberMeCheckbox");
-    private By forgotPasswordLink = By.id(Server.setUpEndpoint()+":id/forgotLogin");
-    private By enterButton = By.id(Server.setUpEndpoint()+":id/loginButton");
-    private By visitBuildinglinkLink = By.id(Server.setUpEndpoint()+":id/aboutButton");
-    private By commentsLink = By.id(Server.setUpEndpoint()+":id/commentsButton");
-    private By copyrightValue = By.id(Server.setUpEndpoint()+":id/copyright");
+    private By usernameField = By.id(Server.setEndpoint()+":id/userNameView");
+    private By passwordField = By.id(Server.setEndpoint()+":id/passwordView");
+    private By rememberMeCheckbox = By.id(Server.setEndpoint()+":id/rememberMeCheckbox");
+    private By forgotPasswordLink = By.id(Server.setEndpoint()+":id/forgotLogin");
+    private By enterButton = By.id(Server.setEndpoint()+":id/loginButton");
+    private By visitBuildinglinkLink = By.id(Server.setEndpoint()+":id/aboutButton");
+    private By commentsLink = By.id(Server.setEndpoint()+":id/commentsButton");
+    private By copyrightValue = By.id(Server.setEndpoint()+":id/copyright");
     private By error = By.id("android:id/message");
     private By okButton = By.id("android:id/button1");
 
@@ -42,9 +42,9 @@ public class LoginScreen {
     }
 
     public String expectedForgotPasswordLink(){
-        if (Server.setUpEndpoint()=="com.buildinglink.mainapp.debug.qa")
+        if (Server.setEndpoint()=="com.buildinglink.mainapp.debug.qa")
             return "https://webservices-live.blkqa.com/v2/global/login/forgotpassword.aspx";
-        if (Server.setUpEndpoint()=="com.buildinglink.mainapp.debug.staging")
+        if (Server.setEndpoint()=="com.buildinglink.mainapp.debug.staging")
             return "staging.buildinglink.com/v2/global/login/forgotpassword.aspx";
         else return "https://buildinglink.com/v2/global/login/forgotpassword.aspx";
     }
@@ -55,9 +55,9 @@ public class LoginScreen {
     }
 
     public String expectedBuildinglinkLink(){
-        if (Server.setUpEndpoint()=="com.buildinglink.mainapp.debug.qa")
+        if (Server.setEndpoint()=="com.buildinglink.mainapp.debug.qa")
             return "https://webservices-live.blkqa.com";
-        if (Server.setUpEndpoint()=="com.buildinglink.mainapp.debug.staging")
+        if (Server.setEndpoint()=="com.buildinglink.mainapp.debug.staging")
             return "staging.buildinglink.com";
         else return "https://buildinglink.com";
     }
