@@ -10,7 +10,7 @@ public class EditInstruction extends NewInstruction {
         this.driver = driver;
     }
 
-    private By instructionType = By.id((Server.setUpEndpoint()+":id/type"));
+    private By instructionType = By.id((Server.setEndpoint()+":id/type"));
 
     private NewInstruction newInstruction = new NewInstruction(driver);
 
