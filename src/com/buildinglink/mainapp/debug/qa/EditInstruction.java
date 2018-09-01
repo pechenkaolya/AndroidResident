@@ -1,5 +1,6 @@
 package com.buildinglink.mainapp.debug.qa;
 
+import com.buildinglink.mainapp.common.Server;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
@@ -9,7 +10,7 @@ public class EditInstruction extends NewInstruction {
         this.driver = driver;
     }
 
-    private By instructionType = By.id(("com.buildinglink.mainapp.debug.qa:id/type"));
+    private By instructionType = By.id((Server.setUpEndpoint()+":id/type"));
 
     private NewInstruction newInstruction = new NewInstruction(driver);
 
