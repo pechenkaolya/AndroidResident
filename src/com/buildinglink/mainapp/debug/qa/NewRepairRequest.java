@@ -15,19 +15,19 @@ public class NewRepairRequest {
     }
 
     protected By backButton = By.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]");
-    protected By saveButton = By.id(Server.setUpEndpoint()+":id/menu_save");
-    protected By problemDescriptionField = By.id(Server.setUpEndpoint()+":id/requestDescription");
+    protected By saveButton = By.id(Server.setEndpoint()+":id/menu_save");
+    protected By problemDescriptionField = By.id(Server.setEndpoint()+":id/requestDescription");
     protected By entryInstructionsField = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().className(\"android.view.ViewGroup\")).scrollIntoView("
             + "new UiSelector().text(\"ENTRY INSTRUCTIONS\"))");
     protected By contactPhoneField = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().className(\"android.view.ViewGroup\")).scrollIntoView("
             + "new UiSelector().text(\"CONTACT PHONE\"))");
-    protected By additionalEmailField = By.id(Server.setUpEndpoint()+":id/email");
+    protected By additionalEmailField = By.id(Server.setEndpoint()+":id/email");
     protected By error = By.id("android:id/message");
     protected By okButton = By.id("android:id/button1");
-    protected By successMessage = By.id(Server.setUpEndpoint()+":id/snackbar_text");
-    protected By saveWaiverButton = By.id(Server.setUpEndpoint()+":id/menu_item_submit");
-    protected By waiverField = By.id(Server.setUpEndpoint()+":id/waiverEditText");
-    protected By waiverCheckbox = By.id(Server.setUpEndpoint()+":id/waiverCheckBox");
+    protected By successMessage = By.id(Server.setEndpoint()+":id/snackbar_text");
+    protected By saveWaiverButton = By.id(Server.setEndpoint()+":id/menu_item_submit");
+    protected By waiverField = By.id(Server.setEndpoint()+":id/waiverEditText");
+    protected By waiverCheckbox = By.id(Server.setEndpoint()+":id/waiverCheckBox");
 
     public void tapSaveButton(){
         driver.findElement(saveButton).click();
