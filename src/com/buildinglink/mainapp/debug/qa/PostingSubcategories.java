@@ -1,5 +1,6 @@
 package com.buildinglink.mainapp.debug.qa;
 
+import com.buildinglink.mainapp.common.Server;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
@@ -13,7 +14,7 @@ public class PostingSubcategories {
         this.driver = driver;
     }
 
-    private By subcategoriesList = By.id("com.buildinglink.mainapp.debug.qa:id/bulletinBoardCategory");
+    private By subcategoriesList = By.id(Server.setEndpoint()+":id/bulletinBoardCategory");
 
     public void selectSubcategory(){
         int countAllSubcategories = driver.findElements(subcategoriesList).size();
