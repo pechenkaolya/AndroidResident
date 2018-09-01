@@ -20,9 +20,9 @@ public class NewPosting {
     private By priceField = By.id(Server.setEndpoint()+":id/postingSubjectPrice");
     private By descriptionField = By.id(Server.setEndpoint()+":id/postingSubjectDescription");
     private By relatedLinkField = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().className(\"android.view.ViewGroup\")).scrollIntoView("
-            + "new UiSelector().resourceId(\"com.buildinglink.mainapp.debug.qa:id/postingRelatedLink\"))");
+            + "new UiSelector().text(\"RELATED LINK\"))");
     private By durationOfPostField = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().className(\"android.view.ViewGroup\")).scrollIntoView("
-            + "new UiSelector().resourceId(\"com.buildinglink.mainapp.debug.qa:id/postDuration\"))");
+            + "new UiSelector().textContains(\"DURATION OF POST\"))");
     private By error = By.id("android:id/message");
     private By okButton = By.id("android:id/button1");
     private By successMessage = By.id(Server.setEndpoint()+":id/snackbar_text");
