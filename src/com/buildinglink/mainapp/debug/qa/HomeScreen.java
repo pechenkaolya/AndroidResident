@@ -25,11 +25,11 @@ public class HomeScreen {
     private By okButton = By.id("android:id/button1");
     private By cancelButton = By.id("android:id/button2");
     private By allUpcomingEvents = By.id(Server.setEndpoint()+":id/agendaDescriptionView");
-    private By homeIcon = By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup[2]/android.widget.TextView[1]");
-    private By lifestyleIcon = By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup[2]/android.widget.TextView[2]");
-    private By greenPlusButton = By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup[2]/android.widget.ImageButton");
-    private By contactsIcon = By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup[2]/android.widget.TextView[3]");
-    private By myProfileIcon = By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup[2]/android.widget.TextView[4]");
+    private By homeIcon = By.xpath("//android.widget.TextView[@text=\"Home\"]");
+    private By lifestyleIcon = By.xpath("//android.widget.TextView[@text=\"Lifestyle\"]");
+    private By greenPlusButton = By.xpath("//android.widget.ImageButton");
+    private By contactsIcon = By.xpath("//android.widget.TextView[@text=\"Contacts\"]");
+    private By myProfileIcon = By.xpath("//android.widget.TextView[@text=\"My Profile\"]");
     private By repairRequestsButton = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().resourceId(\"com.buildinglink.mainapp.debug.qa:id/moduleRecyclerView\")).scrollIntoView("
             + "new UiSelector().text(\"Repair Requests\"))");
     private By fDInstructionsButton = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().resourceId(\"com.buildinglink.mainapp.debug.qa:id/moduleRecyclerView\")).scrollIntoView("
