@@ -10,7 +10,7 @@ public class DeviceDesiredCapabilities {
         caps.setCapability(MobileCapabilityType.DEVICE_NAME, "00f1edb5378094e3"); //Android-057
         caps.setCapability(MobileCapabilityType.PLATFORM_VERSION, "8.1.0"); //Android-057
         caps.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
-        caps.setCapability(AndroidMobileCapabilityType.APP_PACKAGE,Server.setUpEndpoint()); //package of the qa build
+        caps.setCapability(AndroidMobileCapabilityType.APP_PACKAGE,Server.setEndpoint()); //package of the qa build
         caps.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY,"com.buildinglink.mainapp.login.view.viewcontrollers.activities.SplashActivity");//To specify the	activity which we want to launch
         return caps;
     }
