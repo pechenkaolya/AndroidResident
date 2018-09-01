@@ -21,10 +21,10 @@ public class HomeScreen {
     }
 
     private By allowPushNotificationsAllert = By.id("android:id/message");
-    private By refreshButton = By.id(Server.setUpEndpoint()+":id/action_refresh");
+    private By refreshButton = By.id(Server.setEndpoint()+":id/action_refresh");
     private By okButton = By.id("android:id/button1");
     private By cancelButton = By.id("android:id/button2");
-    private By allUpcomingEvents = By.id(Server.setUpEndpoint()+":id/agendaDescriptionView");
+    private By allUpcomingEvents = By.id(Server.setEndpoint()+":id/agendaDescriptionView");
     private By homeIcon = By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup[2]/android.widget.TextView[1]");
     private By lifestyleIcon = By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup[2]/android.widget.TextView[2]");
     private By greenPlusButton = By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup[2]/android.widget.ImageButton");
@@ -34,9 +34,9 @@ public class HomeScreen {
             + "new UiSelector().text(\"Repair Requests\"))");
     private By fDInstructionsButton = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().resourceId(\"com.buildinglink.mainapp.debug.qa:id/moduleRecyclerView\")).scrollIntoView("
             + "new UiSelector().text(\"Front Desk Instructions\"))");
-    private By submitRepairRequestButton = By.id(Server.setUpEndpoint()+":id/submitARepairRequest");
-    private By postToBulletinBoardButton = By.id(Server.setUpEndpoint()+":id/addBulletinBoardItem");
-    private By submitFDIButton = By.id(Server.setUpEndpoint()+":id/submitFdi");
+    private By submitRepairRequestButton = By.id(Server.setEndpoint()+":id/submitARepairRequest");
+    private By postToBulletinBoardButton = By.id(Server.setEndpoint()+":id/addBulletinBoardItem");
+    private By submitFDIButton = By.id(Server.setEndpoint()+":id/submitFdi");
 
     public HomeScreen tapOnOkButton(){
         WebDriverWait wait = new WebDriverWait(driver,120);
