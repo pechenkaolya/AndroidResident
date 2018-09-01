@@ -1,5 +1,6 @@
 package com.buildinglink.mainapp.debug.qa;
 
+import com.buildinglink.mainapp.common.Server;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
@@ -13,7 +14,7 @@ public class FDITypes {
         this.driver = driver;
     }
 
-    private By typesList = By.id("com.buildinglink.mainapp.debug.qa:id/typeName");
+    private By typesList = By.id(Server.setEndpoint()+":id/typeName");
 
     public NewInstruction selectType(){
         int countAllTypes = driver.findElements(typesList).size();
