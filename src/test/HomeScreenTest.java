@@ -27,16 +27,10 @@ public class HomeScreenTest {
     public static void setUp() {
         try {
             driver = new AppiumDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), DeviceDesiredCapabilities.setUpDevice());
-
             LoginScreen loginScreen = new LoginScreen(driver);
             loginScreen.loginWithTestUser();
-
-            WebDriverWait wait = new WebDriverWait(driver,20);
-            wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("android:id/alertTitle"))); //wait till BuildingLink Push Notifications popup appears
-
             HomeScreen homeScreen = new HomeScreen(driver);
             homeScreen.tapOnOkButton();
-
         }catch(Exception e) {
             System.out.println(e.getMessage());
         }
