@@ -1,7 +1,6 @@
 package com.buildinglink.mainapp.screens;
 
 import com.buildinglink.mainapp.common.Server;
-import com.buildinglink.mainapp.prodBuild.RepairRequests;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
