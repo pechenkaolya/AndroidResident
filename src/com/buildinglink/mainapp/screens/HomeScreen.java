@@ -22,12 +22,12 @@ public class HomeScreen {
 
     private By allowPushNotificationsAllert = By.id("android:id/message");
     private By refreshButton = By.id(Server.setEndpoint()+":id/action_refresh");
-    private By okButton = By.id("android:id/button1");
+    public By okButton = By.id("android:id/button1");
     private By cancelButton = By.id("android:id/button2");
     private By allUpcomingEvents = By.id(Server.setEndpoint()+":id/agendaDescriptionView");
     private By homeIcon = By.xpath("//android.widget.TextView[@text=\"Home\"]");
     private By lifestyleIcon = By.xpath("//android.widget.TextView[@text=\"Lifestyle\"]");
-    private By greenPlusButton = By.xpath("//android.widget.ImageButton");
+    private By greenPlusButton = By.xpath("//android.widget.ImageButton[@NAF=\"true\"]");
     private By contactsIcon = By.xpath("//android.widget.TextView[@text=\"Contacts\"]");
     private By myProfileIcon = By.xpath("//android.widget.TextView[@text=\"My Profile\"]");
     private By repairRequestsButton = MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector().resourceId(\"com.buildinglink.mainapp.debug.qa:id/moduleRecyclerView\")).scrollIntoView("
