@@ -1,4 +1,4 @@
-package com.buildinglink.mainapp.debug.qa;
+package com.buildinglink.mainapp.screens;
 
 import com.buildinglink.mainapp.common.Server;
 import io.appium.java_client.AppiumDriver;

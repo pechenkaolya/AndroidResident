@@ -1,4 +1,4 @@
-package com.buildinglink.mainapp.debug.qa;
+package com.buildinglink.mainapp.screens;
 
 import com.buildinglink.mainapp.common.Server;
 import io.appium.java_client.AppiumDriver;
@@ -86,7 +86,7 @@ public class LoginScreen {
     }
 
     public HomeScreen loginWithTestUser() {
-        this.loginWithValidCreds("otest","testtest");
+        this.loginWithValidCreds("tuser2","tuser2");
         return new HomeScreen(driver);
     }
 

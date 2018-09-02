@@ -1,4 +1,4 @@
-package com.buildinglink.mainapp.debug.qa;
+package com.buildinglink.mainapp.screens;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;

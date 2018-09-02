@@ -1,4 +1,4 @@
-package com.buildinglink.mainapp.debug.qa;
+package com.buildinglink.mainapp.screens;
 
 import com.buildinglink.mainapp.common.Server;
 import io.appium.java_client.AppiumDriver;
@@ -7,14 +7,14 @@ import org.openqa.selenium.By;
 
 import java.util.Random;
 
-public class RepairRequestCategories {
+public class PostingCategories {
     private static AppiumDriver<MobileElement> driver;
 
-    public RepairRequestCategories(AppiumDriver<MobileElement> driver) {
+    public PostingCategories(AppiumDriver<MobileElement> driver) {
         this.driver = driver;
     }
 
-    private By categoriesList = By.id(Server.setEndpoint()+":id/categoryName");
+    private By categoriesList = By.id(Server.setEndpoint()+":id/bulletinBoardType");
 
     public void selectCategory(){
         int countAllCategories = driver.findElements(categoriesList).size();

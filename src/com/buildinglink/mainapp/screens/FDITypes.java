@@ -1,6 +1,7 @@
-package com.buildinglink.mainapp.debug.qa;
+package com.buildinglink.mainapp.screens;
 
 import com.buildinglink.mainapp.common.Server;
+import com.buildinglink.mainapp.screens.NewInstruction;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;

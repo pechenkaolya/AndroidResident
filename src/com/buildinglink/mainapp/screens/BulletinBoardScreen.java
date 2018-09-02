@@ -1,12 +1,12 @@
-package com.buildinglink.mainapp.debug.qa;
+package com.buildinglink.mainapp.screens;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
-public class LifestyleScreen {
+public class BulletinBoardScreen {
     private static AppiumDriver<MobileElement> driver;
 
-    public LifestyleScreen(AppiumDriver<MobileElement> driver) {
+    public BulletinBoardScreen(AppiumDriver<MobileElement> driver) {
         this.driver = driver;
     }
 }

@@ -2,7 +2,7 @@ package test;
 
 import com.buildinglink.mainapp.common.DeviceDesiredCapabilities;
 import com.buildinglink.mainapp.common.RandomValueGenerator;
-import com.buildinglink.mainapp.debug.qa.*;
+import com.buildinglink.mainapp.screens.*;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import org.junit.AfterClass;
