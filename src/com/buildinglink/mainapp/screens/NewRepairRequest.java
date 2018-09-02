@@ -52,8 +52,14 @@ public class NewRepairRequest {
     }
 
     public NewRepairRequest typeEntryInstructions(String entryInstructions) {
-        driver.findElement(entryInstructionsField).sendKeys(entryInstructions);
-        driver.navigate().back();
+        try{
+            driver.findElement(entryInstructionsField).sendKeys(entryInstructions);
+            driver.navigate().back();
+        }
+        catch (NoSuchElementException e)
+        {
+            System.out.println("Entry Instructions field is missing");
+        }
         return this;
     }
 
